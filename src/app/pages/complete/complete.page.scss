@@ -1,0 +1,23 @@
+.assessment{
+    ion-item{
+        text-align: right;
+    }
+}
+
+ion-button{
+    width: 100%;
+}
+
+
+
+@media screen and (max-width: 576px){
+
+    .header-label{
+        font-size: 0.9em;
+    }
+    
+    .header-input{
+        font-size: 0.9em;
+    }
+    
+}

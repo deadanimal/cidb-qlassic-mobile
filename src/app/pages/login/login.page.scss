@@ -1,0 +1,57 @@
+
+ion-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  height: 100%;
+  background-image: url("../../../assets/klcc.jpg");
+  background-color: bisque;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  @media only screen and (max-width: 380px) 
+  {
+    background-size: auto;
+  }
+}
+
+ion-input{
+  background-color: aliceblue; 
+  border-radius: 20px; 
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+button{
+  color: rgb(99, 99, 99); 
+  background-color: rgb(127, 214, 255); 
+  border-radius: 20px; 
+  width: 100%; 
+  height: 40px; 
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.logo-row {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}  
+
+.login-box {
+  background: rgba(172, 229, 255, 0.6);
+  margin-top: 10px;
+  padding: 20px 20px 5px 20px;
+  border-radius: 10px;
+}
+
+.logo{
+  width: 150pt; margin-left: auto; margin-right: auto;
+  margin-top: 20px;
+}
+
+.centralize{
+  width: 200pt; margin-left: auto; margin-right: auto;
+}

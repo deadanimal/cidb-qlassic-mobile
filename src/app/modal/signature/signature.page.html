@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button color="light" expand="full" (click)="undo()"> Undo</ion-button>
+      <ion-button color="light" expand="full" (click)="clear()"> Clear</ion-button>
+    </ion-buttons>
+    <ion-title>
+      Signature Pad
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div class="signature-pad">
+    <canvas class="signature-pad-canvas" #canvas></canvas>
+  </div>
+
+</ion-content>

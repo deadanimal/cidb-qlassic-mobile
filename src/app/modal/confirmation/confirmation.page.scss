@@ -1,0 +1,43 @@
+.submit-button{
+    width: 100%;
+}
+
+table{
+    tr{
+        th{
+            text-align: left;
+        }
+        td{
+            padding: 10px;
+            .signature-pad-canvas{
+                touch-action: none;
+                border: solid 1px lightgray;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px){
+    .header-label{
+        font-size: 0.9em;
+    }
+    
+    .header-input{
+        font-size: 0.9em;
+    }
+    
+    .signaturePad{
+        ion-label{
+            margin-bottom: 8px;
+        }
+        div{
+            height: 150px !important;;
+            max-width: 300px !important;;
+            border: solid 1px lightgray;
+                img{
+                    height: 100%;
+                    width: 100%;
+                }
+        }
+    }
+}

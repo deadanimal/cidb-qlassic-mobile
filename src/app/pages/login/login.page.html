@@ -1,0 +1,25 @@
+
+
+<ion-content padding>
+  <ion-grid>
+    <form #form="ngForm" (ngSubmit)="login(form)" method="post" class="login-box">
+      <ion-row class="logo">
+        <ion-col>
+          <img src="../../../assets/qlassic.png"/>
+        </ion-col>
+      </ion-row>
+      <ion-row class="centralize">
+        <ion-col>
+          <ion-input ngModel type="text" name="email" placeholder="Email"></ion-input>
+          <ion-input ngModel type="password" name="password" placeholder="password"></ion-input>
+          <button type="submit">LOGIN</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col >
+          <div  class="ion-text-end">v1.0.0</div>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

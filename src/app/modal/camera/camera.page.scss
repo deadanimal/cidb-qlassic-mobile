@@ -1,0 +1,15 @@
+ion-grid{
+    height: 100%;
+    ion-row{
+        height: 100%;
+        div{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            ion-thumbnail{
+                width: 50%;
+                height: auto;
+            }
+        }
+    }
+}

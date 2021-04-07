@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Attendance no {{ id + 1 }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item lines="none">
+              <ion-label position="fixed">Name</ion-label>
+              <ion-input type="text" #attendanceName value={{attendanceNameValue}} ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="7" size-sm="7" size-xs="12">
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label position="fixed">Position</ion-label>
+                  <ion-input type="text" #attendancePosition value={{attendancePositionValue}}></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label position="fixed">Company</ion-label>
+                  <ion-input type="text" #attendanceCompany value={{attendanceCompanyValue}}></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label position="fixed">Contact</ion-label>
+                  <ion-input type="number" #attendanceContact value={{attendanceContactValue}}></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="5"  size-sm="5" size-xs="12" (click)="signature()">
+            <ion-row>
+              <ion-col>
+                <ion-item lines="none">
+                  <ion-label position="fixed">Signature</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row class="signaturePad">
+              <ion-col >
+                <div>
+                  <img *ngIf="attendanceSignatureValue" [src]="attendanceSignatureValue">
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button class="button-submit" (click)="deleteAttendance()" color="danger">Delete</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button class="button-submit" 
+              [disabled]="attendanceName.value == '' || attendancePosition.value == '' || attendanceCompany.value == '' || attendanceContact.value  == ''"
+              (click)="saveAttendance(attendanceName.value,attendancePosition.value,attendanceCompany.value,attendanceContact.value);saveAttendance(dateAttendance.value, applicationNo.value);" 
+              color="primary">Save</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

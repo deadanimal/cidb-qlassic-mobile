@@ -1,0 +1,95 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="logo" size=4>
+      </ion-col>
+      <ion-col class="logo" size=4>
+        <img src="../../../assets/qlassic.png" height="30pt"/>
+      </ion-col>
+      <ion-col class="logo" size=4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+        <h4>QLASSIC ASSESSMENT ATTENDANCE LIST</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row class="header-label">
+      <ion-col size-xl=2 size-sm="2" size-xs="5">
+        <ion-item class="header-label"  lines="none">
+          <ion-label>Date: </ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size=4 size-sm="4" size-xs="7">
+        <ion-item class="header-input">
+          <ion-input #dateAttendance type="date" value={{today}} readonly></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col  size=3 size-sm="3" size-xs="5">
+        <ion-item class="header-label"lines="none">
+          <ion-label>Application No:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size=3 size-sm="3" size-xs="7">
+        <ion-item class="header-input">
+          <ion-input #applicationNo type="text" value={{applicationNumber}} readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+
+        <table class="table-horizontal">
+          <thead>
+            <tr class="table-header">
+              <th class="header-info">No</th>
+              <th class="header-info">Name</th>
+              <th class="header-info">Position</th>
+              <th class="header-info">Company</th>
+              <th class="header-info">Contact</th>
+              <th class="header-info"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body" *ngFor="let attendance of attendances; index as i">
+              <td class="body-info">{{ i + 1 }}</td>
+              <td class="body-info">{{ attendance.name }}</td>
+              <td class="body-info">{{ attendance.position }}</td>
+              <td class="body-info">{{ attendance.company }}</td>
+              <td class="body-info">{{ attendance.contact }}</td>
+              <td class="body-info"><ion-icon name="create-outline" (click)="editAttendance(i)"></ion-icon></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table-vertical">
+          <thead>
+            <tr class="table-header">
+              <th class="header-info" >No</th>
+              <th class="header-info">Information</th>
+              <th class="header-info"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body" *ngFor="let attendance of attendances; index as i">
+              <td class="body-info">{{ i + 1 }}</td>
+              <td class="body-info body-info2">
+                Name : {{ attendance.name }}<br>
+                Position : {{ attendance.position }}<br>
+                Company : {{ attendance.company }}<br>
+                Contact : {{ attendance.contact }}
+              </td>
+              <td class="body-info"><ion-icon name="create-outline" (click)="editAttendance(i)"></ion-icon></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+        <ion-button [disabled]="dateAttendance.value== '' || applicationNo.value == ''" color="primary" size="small" (click)="saveAttendance(dateAttendance.value, applicationNo.value)">Save2</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

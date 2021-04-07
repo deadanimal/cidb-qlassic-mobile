@@ -1,0 +1,491 @@
+.phone{
+    display: block;
+}
+
+.tablet{
+    display: none;
+}
+
+ion-content{
+    font-size: 0.7em;
+
+    ion-button{
+        width: 100%;
+    }
+}
+
+.firstCol{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    .logo{
+        display: flex;
+        justify-content: center;
+        img{
+            width: 35%;
+        }
+        margin-bottom: 10px;
+    }
+
+    .firstColRowMiddle{
+        flex-grow: 1;
+    }
+
+    .boxBorder{
+        background-color: aliceblue;
+        border-radius: 10pt;
+        padding: 10px;
+        width: 100%;
+
+        .boxBorderInside{
+            display: flex;
+            justify-content: space-between;
+    
+            .labelBorder{    
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.secondCol{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    .pagination{
+        text-align: center;
+    
+        .scrolling{
+            height: 100%;
+            width: 12%;
+            padding-top: 7px;
+        
+            table{
+                width: 100%;
+                height: 100%;
+        
+                td{
+                    text-align: center;
+                }
+            }
+        }
+    
+        .pages{
+            max-width: 76%;
+            
+            table{
+    
+                tr{
+                    height: 30px;
+    
+                    td{
+                        width: 30px;
+    
+                        div{
+                            height: 28px;
+                            width: 28px;
+                            margin: 2px;
+                            padding-top: 7px;
+                            background-color: aliceblue;
+                            border-radius: 2px;
+                            text-align: center;
+                        }
+    
+                        .activeSample{
+                            background-color: #7c8cff !important;
+                            color:  rgb(253, 253, 253) !important;
+                            font-weight: bold !important;
+                        }
+                    }
+                }
+            }
+        }
+    
+        .scrolling, .pages{
+            display: inline-block;
+        }
+    }
+    
+    .secondColRowMiddle{
+        flex-grow: 1;
+
+        .remarksBox{
+            border: #92949C solid 1px;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 10pt;
+
+            ion-textarea{
+                margin: 0;
+                height: 100%;
+            }
+        }
+    }
+
+    .boxBorder{
+        background-color: aliceblue;
+        border-radius: 10pt;
+        padding: 5pt;
+        width: 100%;
+        
+
+        .boxBorderImage{
+            display: flex;
+            justify-content: space-evenly;
+
+            .upload{
+                border: #92949C solid 1px;
+                width: 45%;
+                margin-top: 5px;
+                background-color: black;
+
+                ion-thumbnail{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.thirdCol{
+
+    .tableLegend{
+        border: silver solid 1px;
+        border-radius: 10px;
+        margin: 0;
+
+        table{
+            width: 100%;
+            text-align: center;
+
+            tr{
+                height: 18px;
+
+                th{
+                    padding-left: 10px;
+                    text-align: left;
+                }
+                
+                td{
+                    padding-left: 20px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .divClick {
+        width: 75%;
+        overflow-x: scroll;
+        margin-left: 25%;
+        
+        .tableClick tr{
+            height: 30px;
+            width: 90%;
+
+            .headcol {
+                position: absolute;
+                left: 0;
+                top: auto;
+                margin-top: 7px;
+                width: 20%;
+            }
+
+            .longLabel{
+                text-align: center;
+            }
+
+            .long {
+                width: 30px;
+                height: 100%;
+                div{
+                    height: 96%;
+                    width: 96%;
+                    margin: 2%;
+                    padding-top: 7px;
+                    border-radius: 2px;
+                    text-align: center;
+                    border: 1px solid lightgray;
+                }
+
+                .signNone{
+                    background-color: rgb(252, 252, 252);
+                    ion-label{
+                        color: rgb(252, 252, 252);
+                    }
+                }
+
+                .signNa{
+                    background-color: yellow;
+                }
+                
+                .signTrue{
+                    background-color: green;
+                }
+                
+                .signFalse{
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (min-width: 992px) {
+
+    .phone{
+        display: none;
+    }
+
+    .tablet{
+        display: block;
+    }
+
+    ion-content{
+        font-size: 2em;
+    
+        ion-button{
+            width: 100%;
+        }
+    }
+
+    .firstCol{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        
+        ion-badge{
+            width: 15%;
+            font-size: 1em;
+        }
+
+        .logo{
+            display: flex;
+            justify-content: center;
+            img{
+                width: 35%;
+            }
+            margin-bottom: 10px;
+        }
+    
+        .firstColRowMiddle{
+            flex-grow: 1;
+        }
+    
+        .boxBorder{
+            background-color: aliceblue;
+            border-radius: 10pt;
+            padding: 5pt;
+            width: 100%;
+    
+            .boxBorderInside{
+                display: flex;
+                justify-content: space-between;
+        
+                .labelBorder{    
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    
+    .secondCol{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    
+        .pagination{
+            text-align: center;
+            margin-bottom: 20px;
+        
+            .scrolling{
+                height: 100%;
+                width: 12%;
+                padding-top: 7px;
+            
+                table{
+                    width: 100%;
+                    height: 100%;
+            
+                    td{
+                        text-align: center;
+                    }
+                }
+            }
+        
+            .pages{
+                max-width: 76%;
+                
+                table{
+        
+                    tr{
+                        height: 60px;
+        
+                        td{
+                            width: 60px;
+        
+                            div{
+                                height: 56px;
+                                width: 56px;
+                                margin: 4px;
+                                padding-top: 7px;
+                                background-color: aliceblue;
+                                border-radius: 5px;
+                                text-align: center;
+                            }
+        
+                            .activeSample{
+                                background-color: #7c8cff !important;
+                                color:  rgb(253, 253, 253) !important;
+                                font-weight: bold !important;
+                            }
+                        }
+                    }
+                }
+            }
+        
+            .scrolling, .pages{
+                display: inline-block;
+            }
+        }
+        
+        .secondColRowMiddle{
+            flex-grow: 1;
+    
+            .remarksBox{
+                border: #92949C solid 1px;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-radius: 10pt;
+            
+                ion-textarea{
+                    margin: 0;
+                    height: 100%;
+                }
+            }
+        }
+    
+        .boxBorder{
+            background-color: aliceblue;
+            border-radius: 10pt;
+            padding: 5pt;
+            width: 100%;
+            
+    
+            .boxBorderImage{
+                display: flex;
+                justify-content: space-evenly;
+    
+                .upload{
+                    border: #92949C solid 1px;
+                    width: 35%;
+                    margin-top: 5px;
+                    background-color: black;
+    
+                    ion-thumbnail{
+                        width: 100%;
+                        height: 130px;
+                    }
+                }
+            }
+        }
+
+        .button-tab{
+            font-size: 1.2em;
+            height: 30px;
+        }
+    }
+    
+    .thirdCol{
+    
+        .tableLegend{
+            text-align: center;
+            border: silver solid 1px;
+            margin: 0;
+            width: 100%;
+            padding: 30px;
+
+            table{
+                font-size: 0.9em;
+        
+                tr{
+                    th{
+                        padding-left: 10px;
+                        text-align: left;
+                        padding-top: 10px;
+                    }
+                    
+                    td{
+                        padding-left: 20px;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    
+        .divClick {
+            width: 70%;
+            overflow-x: scroll;
+            margin-left: 30%;
+            
+            .tableClick tr{
+                height: 50px;
+                width: 90%;
+    
+                .headcol {
+                    position: absolute;
+                    left: 0;
+                    top: auto;
+                    margin-top: 15px;
+                    width: 20%;
+                }
+    
+                .longLabel{
+                    text-align: center;
+                }
+    
+                .long {
+                    width: 80px;
+                    height: 100%;
+                    div{
+                        height: 96%;
+                        width: 96%;
+                        margin: 2%;
+                        border-radius: 5px;
+                        text-align: center;
+                        border: 3px solid lightgray;
+                    }
+
+                    .signNone{
+                        background-color: rgb(252, 252, 252);
+                        ion-label{
+                            color: rgb(252, 252, 252);
+                        }
+                    }
+    
+                    .signNa{
+                        background-color: yellow;
+                    }
+                    
+                    .signTrue{
+                        background-color: green;
+                    }
+                    
+                    .signFalse{
+                        background-color: red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+

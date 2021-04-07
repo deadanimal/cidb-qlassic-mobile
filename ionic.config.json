@@ -1,0 +1,7 @@
+{
+  "name": "qlassic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

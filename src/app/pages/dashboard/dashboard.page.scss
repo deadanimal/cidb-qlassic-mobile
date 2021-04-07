@@ -1,0 +1,151 @@
+ion-content{
+    font-size: 0.8em;
+}
+
+.color-green{
+    color: rgb(52, 175, 36);
+}
+
+.color-red{
+    color: rgb(255, 0, 0);
+}
+
+.header-input{
+    border-bottom: rgb(199, 199, 199) solid 1px;
+}
+
+
+.btn-group{
+    width: 100%;
+}
+
+.btn-2{
+    width: 48%;
+}
+
+.btn-3{
+    width: 90%;
+}
+
+
+table{
+    width: 100%;
+    font-size: 0.8em;
+}
+
+.table-header{
+    border: 1px solid;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(187, 197, 255);
+
+    th:last-child{
+        border-right: 0;
+    }
+}
+
+.header-info{
+    border-right: 1px solid;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    text-align: center;
+}
+
+.table-body{
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    margin: 0px;
+    padding: 0px;
+
+    td:last-child{
+        border-right: 0;
+    }
+}
+
+.body-info{
+    border-right: 1px solid;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+    text-align: center;
+}
+
+.body-info-s{
+    border-right: 1px solid;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+    padding-left: 5pt;
+    table{
+        font-size: 1em !important;
+    }
+}
+
+.my-custom-class {
+    --background: #e5e5e5;
+    --width: 100%;
+}
+
+ion-toggle {
+    zoom: 0.75;
+    display: flex;
+    align-self: flex-end;
+}
+
+ion-select {
+    width: 100%;
+    justify-content: center;
+}
+
+.vertical{
+    display: block !important;
+}
+
+.horizontal{
+    display: none !important;;
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+
+    ion-content{
+        font-size: 0.8em;
+    }
+
+    ion-button{
+        font-size: 0.8em;
+    }
+    
+    ion-item{
+        font-size: 0.8em;
+    }
+
+    .header-label{
+        height: 30pt;
+    }
+    
+    .header-input{
+        height: 30pt;
+    }
+
+    .vertical{
+        display: none !important;;
+    }
+    
+    .horizontal{
+        display: block !important;;
+    }
+}
+
+@media screen and (min-width: 768px) {
+
+    ion-content{
+        font-size: 1.2em;
+    }
+
+    .vertical{
+        display: none !important;;
+    }
+    
+    .horizontal{
+        display: block !important;;
+    }
+}

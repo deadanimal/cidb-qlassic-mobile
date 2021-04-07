@@ -1,0 +1,24 @@
+
+ion-tab-bar{
+  height: 30px;
+  
+  ion-tab-button{
+    min-width: 25%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  ion-tab-bar{
+    height: 5em;
+
+    ion-tab-button{
+
+      ion-icon{
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+}

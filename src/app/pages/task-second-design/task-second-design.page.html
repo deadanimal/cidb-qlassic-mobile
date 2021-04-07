@@ -1,0 +1,160 @@
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col class="firstCol" size-xl='6' size-lg='6' size='4'>
+        <ion-row>
+          <ion-col class="logo">
+            <img src="../../../assets/qlassic.png"/>
+          </ion-col>
+        </ion-row>
+        <ion-row class="firstColRowMiddle">
+          <ion-col>
+            <table> 
+              <ng-container *ngFor="let topic of topics;let i = index">
+                <tr *ngFor="let subtopic of topic.subtopics;let j = index">
+                  <td [attr.rowspan]="topic.subtopics.length" *ngIf="j == 0">{{topic.topic}}</td>
+                  <td (click)="selectTask(subtopic.id,i,j)" [ngClass]="{'activeTask': subtopic.id == taskId}"> ({{totalSample[subtopic.id]}}) {{subtopic.subtopic}}</td>
+                </tr>
+              </ng-container>
+            </table>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div class="boxBorder">
+              <div class="boxBorderInside">
+                <ion-label class="labelBorder">No of compliances (a)</ion-label>
+                <ion-badge color="medium">{{checkYes}}</ion-badge>
+              </div>
+              <div class="boxBorderInside" style="margin-top: 10px;">
+                <ion-label class="labelBorder">No of checks (b)</ion-label>
+                <ion-badge color="medium">{{checkTrue}}</ion-badge>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col class="secondCol" size-xl='6' size-lg='6' size='4'>
+        <ion-row>
+          <ion-col class="pagination" >
+            <div class="scrolling">
+              <table>
+                <tr>
+                  <td>
+                    <fa-icon (click)="previousSample()" [icon]="['fas','chevron-left']"></fa-icon>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="pages">
+              <table>
+                <tr>
+                  <td *ngFor="let sample of sampleRan">
+                    <div (click)="goToSample(sample)" [ngClass]="{'activeSample': sample == chooseSample}" href="">{{sample}}</div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="scrolling">
+              <table>
+                <tr>
+                  <td>
+                    <fa-icon (click)="nextSample()" [icon]="['fas','chevron-right']"></fa-icon>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="secondColRowMiddle">
+          <ion-col class="remarksBox">
+              <ion-label position="fixed">Remark</ion-label>
+              <ion-textarea  #remarkInput value="{{resultRemark}}" rows="2"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <div class="boxBorder">
+            <div class="boxBorderImage">
+              <div class="upload" (click)="takePic(0)">
+                <ion-thumbnail>
+                    <ion-img *ngIf="photos[0]!=''" [src]="photos[0]" ></ion-img>
+                </ion-thumbnail>
+              </div>
+              <div class="upload" (click)="takePic(1)">
+                <ion-thumbnail>
+                    <ion-img *ngIf="photos[1]!=''" [src]="photos[1]" ></ion-img>
+                </ion-thumbnail>
+              </div>
+            </div>
+            <div class="boxBorderImage">
+              <div class="upload" (click)="takePic(2)">
+                <ion-thumbnail>
+                    <ion-img  *ngIf="photos[2]!=''" [src]="photos[2]" ></ion-img>
+                </ion-thumbnail>
+              </div>
+              <div class="upload" (click)="takePic(3)">
+                <ion-thumbnail>
+                    <ion-img  *ngIf="photos[3]!=''"[src]="photos[3]" ></ion-img>
+                </ion-thumbnail>
+              </div>
+            </div>
+          </div>
+        </ion-row>
+        <ion-row>
+          <ion-col >
+            <ion-button [disabled]="!totalBoxTrue"  class="phone" color="primary" size="small" (click)="saveResult(remarkInput.value)">Save</ion-button>
+            <ion-button [disabled]="!totalBoxTrue"  class="tablet" color="primary" size="large" (click)="saveResult(remarkInput.value)">Save</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col class="thirdCol"  size-xl='12' size-lg='12' size='4'>
+        <ion-row>
+          <ion-col size-xl='6' size-lg='6' size='12' >
+            <div class="tableLegend">
+              <table>
+                <tr >
+                  <th colspan="2">Legend</th>
+                </tr>
+                <tr *ngFor="let resulttable of resultTable; index as i">
+                  <th>Var {{i + 1}} :</th>
+                  <td>{{resulttable.name}}</td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+          <ion-col size-xl='6' size-lg='6' size="12">
+            <div class="divClick">
+              <table class="tableClick">
+                <tr>
+                  <th class="headcol"></th>
+                  <td class="longLabel" *ngFor="let sample of samplePerSample; index as i" >S{{i+1}}</td>
+                </tr>
+                <tr *ngFor="let resulttable of resultTable; index as i">
+                  <th class="headcol">Var {{i + 1}}</th>
+                  <td class="long" *ngFor="let result of resulttable.result; index as j" >
+                    <div [ngClass]="{
+                      'signNa': result == 'NA', 
+                      'signTrue': result == 'Yes', 
+                      'signFalse': result == 'No', 
+                      'signNone': result == 'None'}" (click)="changeResult(result,i,j)">
+                      <ion-icon *ngIf="result == 'Yes'" name="checkmark-outline"></ion-icon>
+                      <ion-icon *ngIf="result == 'No'" name="close-outline"></ion-icon>
+                      <ion-label *ngIf="result == 'NA'">O</ion-label>
+                      <ion-label *ngIf="result == 'None'">N</ion-label>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

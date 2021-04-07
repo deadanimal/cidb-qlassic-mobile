@@ -1,0 +1,148 @@
+<ion-content>
+  <ion-grid>
+
+    <ion-row class="tab-title">
+      <ion-col size="2">
+        <img src="../../../assets/qlassic.png" height="40px"/>
+      </ion-col>
+      <ion-col size="10">
+        <h6 class="phone-view">ASSESSMENT FORM ARCHITECTURAL WORK ({{taskName}}) </h6>
+        <h4 class="tablet-view">ASSESSMENT FORM ARCHITECTURAL WORK ({{taskName}}) </h4>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="tab-header">
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-label">Block</div>
+          <div class="box-input"><ion-input type="text" [(ngModel)]="blockValue" (ionChange)="initializeResult()"></ion-input></div>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-label">Unit</div>
+          <div class="box-input"><ion-input type="text" [(ngModel)]="unitValue" (ionChange)="initializeResult()"></ion-input></div>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-choice" [ngClass]="{'activeChoose': testType == 'P'}" (click)="testTypeChange('P')">P</div>
+          <div class="box-choice" [ngClass]="{'activeChoose': testType == 'S'}" (click)="testTypeChange('S')">S</div>
+          <div class="box-choice" [ngClass]="{'activeChoose': testType == 'C'}" (click)="testTypeChange('C')">C</div>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="box-border">
+          <div class="box-label">Select</div>
+          <div class="box-input">
+            <ion-select interface="popover" [(ngModel)]="selectionValue" [compareWith]="compareFn" (ionChange)="initializeResult()">
+              <ion-select-option *ngFor="let selection of selectionValues" [value]="selection">{{selection}}</ion-select-option>
+            </ion-select>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="1">
+        <div class="box-border">
+          <div class="box-button" (click)="alertReset()">Reset</div>
+        </div>
+      </ion-col>
+      <ion-col size="1">
+        <div class="box-border">
+          <div *ngIf="totalBoxTrue" class="box-button" (click)="saveAssessment()">Save</div>
+          <div *ngIf="!totalBoxTrue" class="box-button disable-button" (click)="saveDisabled()">Save</div>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-label">P</div>
+          <div class="box-input">{{pDone}}/{{pTotal}}</div>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-label">S</div>
+          <div class="box-input">{{sDone}}/{{sTotal}}</div>
+        </div>
+      </ion-col>
+      <ion-col size="2">
+        <div class="box-border">
+          <div class="box-label">C</div>
+          <div class="box-input">{{cDone}}/{{cTotal}}</div>
+        </div>
+      </ion-col>
+      <ion-col size="4">
+        <div class="box-border">
+          <div class="box-label">Sampling Done</div>
+          <div class="box-input">{{samplingDone}}/{{totalSampling}}</div>
+        </div>
+      </ion-col>
+      <ion-col size="1">
+        <div class="box-border">
+          <div class="box-timer">{{ periodView }}</div>
+        </div>
+      </ion-col>
+      <ion-col size="1">
+        <div class="box-border">
+          <div class="box-turn" (click)="changePage('previous')" ><ion-icon name="chevron-back-outline"></ion-icon></div>
+          <div class="box-page">{{chooseSample}}</div>
+          <div class="box-turn" (click)="changePage('next')"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="box-border" style="justify-content: left !important;">
+          <div class="box-button" (click)="addPhoto()" style="width: auto !important; padding-left: 5px; padding-right: 5px;">Add Photo</div>
+          <div class="box-button" style="width: auto !important; padding-left: 5px; padding-right: 5px; background-color:#fcfcfc !important; color: rgb(0, 0, 0) !important;">{{addPhotoButton}}</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row class="tab-information">
+      <ion-col>
+        <table>
+          <tr class="table-true">
+            <ng-container *ngFor="let topic of resultsArray;let i = index">
+              <ng-container *ngFor="let subtopic of topic.subtopics;let j = index">
+                <td class="border-top border-left border-right" [attr.colspan]="topic.subtopics.length" *ngIf="j == 0">Comply : <span>{{checkYes[i]}}</span> / <span>{{checkTrue[i]}}</span></td>
+              </ng-container>
+            </ng-container>
+          </tr>
+          <tr class="table-topic">
+            <ng-container *ngFor="let topic of resultsArray;let i = index">
+              <ng-container *ngFor="let subtopic of topic.subtopics;let j = index">
+                <td class="border-left border-right" [attr.colspan]="topic.subtopics.length" *ngIf="j == 0">{{topic.topic}}</td>
+              </ng-container>
+            </ng-container>
+          </tr>
+          <tr class="table-subtopic">
+            <ng-container *ngFor="let topic of resultsArray;let i = index">
+              <ng-container *ngFor="let subtopic of topic.subtopics;let j = index">
+                <!-- [ngClass]="{'color-green': connectionStr == 'Online', 'color-red': connectionStr == 'Offline'}" -->
+                <td [ngClass]="{'border-right': j == topic.subtopics.length - 1, 'border-left': j == 0}"><div class="vertical-writing">{{subtopic.subtopic}}</div></td>
+              </ng-container>
+            </ng-container>
+          </tr>
+          <tr class="table-result">
+            <ng-container *ngFor="let topic of resultsArray;let i = index">
+              <ng-container *ngFor="let subtopic of topic.subtopics;let j = index">
+                <td class="border-bottom" [ngClass]="{'border-right': j == topic.subtopics.length - 1, 'border-left': j == 0}">
+                    <div *ngFor="let result of subtopic.result;let k = index"
+                      [ngClass]="{
+                        'signNa': result == 'NA', 
+                        'signTrue': result == 'Yes', 
+                        'signFalse': result == 'No', 
+                        'signNone': result == 'None'}" (click)="changeResult(result,i,j,k)">
+                        <ion-icon *ngIf="result == 'Yes'" name="checkmark-outline"></ion-icon>
+                        <ion-icon *ngIf="result == 'No'" name="close-outline"></ion-icon>
+                        <ion-label *ngIf="result == 'NA'">O</ion-label>
+                        <ion-label *ngIf="result == 'None'">N</ion-label>
+                    </div>
+                </td>
+              </ng-container>
+            </ng-container>
+          </tr>
+        </table>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

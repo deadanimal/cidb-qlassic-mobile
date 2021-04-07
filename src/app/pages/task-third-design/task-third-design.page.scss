@@ -1,0 +1,330 @@
+ion-content{
+    font-size: 0.7em;
+}
+
+.phone-view{
+    display: none;
+}
+
+.tablet-view{
+    display: block;
+}
+
+.activeChoose{
+    background-color: rgb(1, 182, 185);
+    color: white;
+}
+
+.disable-button{
+    background-color:#659ccc !important;
+}
+
+.tab-header{
+    margin-top: 15px;
+    ion-col{
+        padding: 2px;
+        height: 25px;
+        div{
+            height: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: space-evenly;
+            div{
+                padding-top: 3px;
+                height: 100%;
+                text-align: center;
+            }
+        }
+    }
+    .box-border{
+        border: solid 1px rgb(221, 221, 221);
+        border-radius: 5px;  
+        box-shadow: 1px 2px 5px #9b9b9b;
+        width: 100%;
+        .box-label{
+            background-color: rgb(1, 182, 185);
+            border-radius: 5px 0 0 5px;
+            color: white;
+            width: 50%;
+        }
+        .box-input{
+            width: 50%;
+            ion-select{
+                width: 100%;
+            }
+        }
+        .box-choice{
+            border-radius: 3px;
+            width: 33% !important;
+        }
+        .box-timer{
+            width: 100%;
+        }
+        .box-turn{
+            width: 25%;
+        }
+        .box-turn:hover{
+            background-color: #d6dafc  !important;
+            cursor: pointer;
+        }
+        .box-page{
+            background-color:#0275d8;
+            width: 50%;
+            color: white;
+        }
+        .box-button{
+            background-color:#0275d8;
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+            text-align: center;
+        }
+        .box-button:hover{
+            background-color: #014581;
+            cursor: pointer;
+        }
+    }
+}
+
+.tab-information{
+    margin-top: 15px;
+
+    .border-top{
+        border-top: solid 2px rgb(85, 85, 85) !important;
+    }
+    .border-bottom{
+        border-bottom: solid 2px rgb(85, 85, 85) !important;
+    }
+    .border-left{
+        border-left: solid 2px rgb(85, 85, 85) !important;
+    }
+    .border-right{
+        border-right: solid 2px rgb(85, 85, 85) !important;
+    }
+
+    table{
+        width: 100%;
+        table-layout: fixed;
+        td{
+            border: solid 1px rgb(151, 151, 151);
+        }
+    }
+    .table-true{
+        text-align: center;
+        span{
+            font-weight: bold;
+        }
+
+    }
+    .table-topic{
+        text-align: center;
+        font-weight: bold;
+        background-color:  rgb(221, 221, 221);
+    }
+    .table-subtopic{
+        .vertical-writing{
+            width: 100%;
+            transform: rotate(180deg);
+            writing-mode: vertical-rl;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+    .table-result{
+        td{
+            vertical-align: baseline;
+            padding-bottom: 5px;
+            div{
+
+                margin-top: 5px;
+                height: 96%;
+                width: 96%;
+                border-radius: 5px;
+                text-align: center;
+                border: 3px solid lightgray;
+            }
+
+            .signNone{
+                background-color: rgb(252, 252, 252);
+                ion-label{
+                    color: rgb(252, 252, 252);
+                }
+            }
+
+            .signNa{
+                background-color: yellow;
+            }
+            
+            .signTrue{
+                background-color: green;
+            }
+            
+            .signFalse{
+                background-color: red;
+            }
+            
+        }
+
+    }
+}
+
+@media screen and (min-width: 992px) {
+    ion-content{
+        font-size: 1.2em;
+    }
+
+    .phone-view{
+        display: block;
+    }
+    
+    .tablet-view{
+        display: none;
+    }
+
+    .activeChoose{
+        background-color: rgb(1, 182, 185);
+        color: white;
+    }
+    
+    .disable-button{
+        background-color:#659ccc !important;
+    }
+
+    .tab-header{
+        margin-top: 15px;
+        ion-col{
+            padding: 2px;
+            height: 40px;
+            div{
+                height: 100%;
+                text-align: center;
+                display: flex;
+                justify-content: space-evenly;
+                div{
+                    padding-top: 3px;
+                    height: 100%;
+                    text-align: center;
+                }
+            }
+        }
+        .box-border{
+            border: solid 1px rgb(221, 221, 221);
+            border-radius: 5px;  
+            box-shadow: 1px 2px 5px #9b9b9b;
+            width: 100%;
+            .box-label{
+                background-color: rgb(1, 182, 185);
+                border-radius: 5px 0 0 5px;
+                color: white;
+                width: 50%;
+            }
+            .box-input{
+                width: 50%;
+                ion-select{
+                    width: 100%;
+                }
+            }
+            .box-choice{
+                border-radius: 3px;
+                width: 33% !important;
+            }
+            .box-timer{
+                width: 100%;
+            }
+            .box-turn{
+                width: 25%;
+            }
+            .box-turn:hover{
+                background-color: #d6dafc  !important;
+                cursor: pointer;
+            }
+            .box-page{
+                background-color:#0275d8;
+                width: 50%;
+                color: white;
+            }
+            .box-button{
+                background-color:#0275d8;
+                color: white;
+                border-radius: 5px;
+                width: 100%;
+                text-align: center;
+            }
+            .box-button:hover{
+                background-color: #014581;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .tab-information{
+        margin-top: 25px;
+        table{
+            width: 100%;
+            table-layout: fixed;
+            td{
+                border: solid 1px rgb(151, 151, 151);
+            }
+        }
+        .table-true{
+            text-align: center;
+            height: 40px;
+            span{
+                font-weight: bold;
+            }
+
+        }
+        .table-topic{
+            height: 40px;
+            text-align: center;
+            font-weight: bold;
+            background-color:  rgb(221, 221, 221);
+        }
+        .table-subtopic{
+            .vertical-writing{
+                width: 100%;
+                transform: rotate(180deg);
+                writing-mode: vertical-rl;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+        }
+        .table-result{
+            td{
+                vertical-align: baseline;
+                padding-bottom: 5px;
+                div{
+
+                    margin-top: 5px;
+                    height: 96%;
+                    width: 96%;
+                    border-radius: 5px;
+                    text-align: center;
+                    border: 3px solid lightgray;
+                }
+
+                .signNone{
+                    background-color: rgb(252, 252, 252);
+                    ion-label{
+                        color: rgb(252, 252, 252);
+                    }
+                }
+
+                .signNa{
+                    background-color: yellow;
+                }
+                
+                .signTrue{
+                    background-color: green;
+                }
+                
+                .signFalse{
+                    background-color: red;
+                }
+                
+            }
+
+        }
+    }
+
+}

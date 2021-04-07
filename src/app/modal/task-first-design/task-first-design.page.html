@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{category}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="10" offset=1>
+
+        <ion-row *ngFor="let task of tasks">
+          <ion-col size="12">
+            <ion-button color="primary" (click)="chooseByTopic(task.topic, task.type)">{{ task.topic }}</ion-button>
+          </ion-col>
+        </ion-row>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

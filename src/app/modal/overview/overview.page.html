@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Project Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
+        <ion-item class="header-label">
+          <ion-label >Project ID</ion-label>
+          <ion-input type="text" readonly value="{{projectCode}}"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
+        <ion-item class="header-label">
+          <ion-label>Project Name</ion-label>
+          <ion-input type="text" readonly value="{{projectName}}"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
+        <ion-item class="header-label">
+          <ion-label >Phase</ion-label>
+          <ion-input type="text" readonly value="{{phase}}"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-lg="6" size-md="6" size-sm="6" size-xs="12">
+        <ion-item class="header-label">
+          <ion-label>Start Date</ion-label>
+          <ion-input type="text" readonly value="{{startDate}}"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <table class="table-overview">
+          <thead>
+              <tr>
+                <th rowspan="2" style="width: 20%;">Job Status</th>
+                <ng-container *ngFor="let title of header;">
+                  <th [attr.colspan]="title.subtopictotal" *ngIf="title.type == 1">{{title.topic}}</th>
+                  <th rowspan="2" *ngIf="title.type == 2">{{title.topic}}</th>
+                </ng-container>
+              </tr>
+              <tr>
+                <ng-container *ngFor="let title of header;">
+                  <ng-container *ngFor="let subtopic of title.subtopic">
+                    <th *ngIf="title.type == 1">{{subtopic}}</th>
+                  </ng-container>
+                </ng-container>
+              </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let detail of body;">
+              <td>{{detail.jobStatus}}</td>
+              <td *ngFor="let result of detail.resultTable;">{{result}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Total</th>
+              <ng-container *ngFor="let title of header;">
+                <th [attr.colspan]="title.subtopictotal" *ngIf="title.type == 1">{{title.complete}}/{{title.total}}</th>
+                <th *ngIf="title.type == 2">{{title.complete}}</th>
+              </ng-container>
+            </tr>
+          </tfoot>
+        </table>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

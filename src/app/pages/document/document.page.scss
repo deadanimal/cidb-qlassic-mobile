@@ -1,0 +1,86 @@
+.logo{
+    text-align: center;
+}
+
+h4{
+    font-weight: bold;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+}
+
+.table-header{
+    border: 1px solid;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(187, 197, 255);
+
+    th:last-child{
+        border-right: 0;
+    }
+}
+
+.header-info{
+    border-right: 1px solid;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+    text-align: center;
+}
+
+.table-body{
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    margin: 0px;
+    padding: 0px;
+
+    td:last-child{
+        border-right: 0;
+    }
+}
+
+.body-info{
+    border-right: 1px solid;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+    text-align: center;
+}
+
+.body-info-s{
+    border-right: 1px solid;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+    padding-left: 5pt;
+}
+
+ion-button{
+    margin-right: 3pt;
+    margin-left: 3pt;
+}
+ion-icon{
+    background-color: #3380FF;
+}
+
+
+@media screen and (max-width: 576px){
+
+    h4{
+        font-size: 1.1em;
+    }
+
+    .header-label{
+        font-size: 0.9em;
+    }
+
+    .table-header{
+        font-size: 0.9em;
+    }
+    
+    
+    .table-body{
+        font-size: 0.9em;
+    }
+
+}

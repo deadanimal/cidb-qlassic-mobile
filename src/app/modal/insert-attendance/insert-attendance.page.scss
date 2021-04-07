@@ -1,0 +1,48 @@
+ion-header ion-toolbar{
+    padding-top: 0;
+}
+
+ion-item{
+    height: 35pt;
+}
+
+ion-input{
+    border-bottom: rgb(139, 139, 139) 1px solid;
+}
+
+.button-submit{
+    width: 100%;
+}
+
+.signaturePad{
+    height: 70%; 
+    border: solid 1px lightgray;
+    div{
+        height: 100%;
+        width: 100%;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+
+@media screen and (max-width: 576px){
+    
+
+    .signaturePad{
+        height: 150px;
+        ion-col{
+            max-height: 100%;
+        }
+        div{
+            height: 100%;
+            width: 100%;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}

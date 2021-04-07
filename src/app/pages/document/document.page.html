@@ -1,0 +1,43 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="logo" size=4>
+      </ion-col>
+      <ion-col class="logo" size=4>
+        <img src="../../../assets/qlassic.png" height="30pt"/>
+      </ion-col>
+      <ion-col class="logo" size=4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+        <h4>Download Supporting Document</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+
+        <table>
+          <thead>
+            <tr class="table-header">
+              <th class="header-info" style="width: 10%;">No</th>
+              <th class="header-info" style="width: 50%;">Document</th>
+              <th class="header-info" style="width: 20%;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body" *ngFor="let document of documents; index as i">
+              <td class="body-info">{{ i + 1 }}</td>
+              <td class="body-info-s">
+                <a *ngIf="document.status != 'Downloaded'" (click)="download(document.link, i, document.name)">{{ document.name }}</a>
+                <a *ngIf="document.status == 'Downloaded'" (click)="openPdf(document.name)">{{ document.name }}</a>
+              </td>
+              <td class="body-info">{{ document.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,211 @@
+<ion-content padding>
+  <ion-grid>
+    <ion-row class="header-label">
+      <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label [ngClass]="{
+            'color-green': connectionStr == 'Online', 
+            'color-red': connectionStr == 'Offline'}">{{connectionStr}}</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=10  size-lg="10" size-sm="10"  size-xs="7" style="padding-top: 15px">
+          <ion-toggle color="success" [checked]=connection disabled></ion-toggle>
+      </ion-col>
+    </ion-row>
+    <ion-row class="header-label">
+      <ion-col size-xl=2 size-lg="2"size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label >Project</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=5 size-lg="5"size-sm="5" size-xs="7">
+        <ion-item class="header-input">
+          <ion-select interface="popover" #selectProject  [(ngModel)]="selectProjectValue" (ionChange)="onChangeProject(selectProject.value)">
+            <ion-select-option *ngFor="let project of projects">{{project.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col class="horizontal" size-xl=5 size-lg="5" size-sm="5" size-xs="12" >
+        <div class="btn-group">
+          <ion-button *ngIf="userRole=='leader'" [disabled]="connectionStr == 'Offline'" class="btn-2" color="success" size="small" (click)="completedForm()">COMPLETE</ion-button>
+          <ion-button [disabled]="connectionStr == 'Offline'" class="btn-2" color="primary" size="small" (click)="syncData()">SYNC</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="header-label">
+      <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label position="fixed">Name</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=5 size-lg="5" size-sm="5" size-xs="7">
+        <ion-item class="header-input">
+          <ion-input type="text" value={{userName}}></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label position="fixed">NRIC</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=3 size-lg="3" size-sm="3" size-xs="7">
+        <ion-item class="header-input">
+          <ion-input type="number" value={{userNric}} readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label position="fixed" >Partner</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=5 size-lg="5" size-sm="5" size-xs="7">
+        <ion-item class="header-input">
+          <ion-select interface="popover" #selectPartner [(ngModel)]="selectPartnerValue" (ionChange)="onChangePartner(selectPartner.value)">
+            <ion-select-option *ngFor="let partner of partners">{{partner.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
+        <ion-item class="header-label" lines="none">
+          <ion-label position="fixed">NRIC</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col size-xl=3 size-lg="3" size-sm="3" size-xs="7">
+        <ion-item class="header-input">
+          <ion-input type="number" value={{partnerNric}} readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12 class="horizontal">
+        <table>
+          <thead>
+            <tr class="table-header">
+              <th class="header-info" style="width: 15%;">Job Status</th>
+              <th class="header-info" style="width: 35%;">Project</th>
+              <th class="header-info" style="width: 15%;">Date</th>
+              <th class="header-info" style="width: 35%;">Assessor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body">
+              <td class="body-info">
+                {{ jobStatus }}<br>
+                <ion-button [disabled]="toDisabled || connectionStr == 'Offline'" class="btn-3" color="primary" size="small" (click)="overview()">Overview</ion-button>
+              </td>
+              <td class="body-info-s">
+                <table>
+                  <tr>
+                    <td style="width: 30%;">Name</td>
+                    <td style="width: 70%;"> : {{ projectName }}</td>
+                  </tr>
+                  <tr>
+                    <td>Phase</td>
+                    <td> : {{ projectPhase }}</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td> : {{ projectLocation }}</td>
+                  </tr>
+                  <tr>
+                    <td>Sample</td>
+                    <td> : {{ projectSample }}</td>
+                  </tr>
+                  <tr>
+                    <td>Days</td>
+                    <td> : {{ projectDays }}</td>
+                  </tr>
+                </table>
+              </td>
+              <td class="body-info">{{ projectDate }}</td>
+              <td class="body-info-s">
+                <div *ngFor="let assessor of assessors;">
+                  <span >{{ assessor.name }}</span>
+                  <br/>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+      <ion-col size=12 class="vertical">
+        <table>
+          <thead>
+            <tr class="table-header">
+              <th class="header-info" style="width: 35%;">Job Status</th>
+              <th class="header-info" style="width: 65%;">Project</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body">
+              <td class="body-info">
+                {{ jobStatus }}<br>
+                <ion-button [disabled]="toDisabled" class="btn-3" color="primary" size="small" (click)="overview()">Overview</ion-button>
+              </td>
+              <td class="body-info-s">
+                <table>
+                  <tr>
+                    <td style="width: 30%;">Name</td>
+                    <td style="width: 70%;"> : {{ projectName }}</td>
+                  </tr>
+                  <tr>
+                    <td>Phase</td>
+                    <td> : {{ projectPhase }}</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td> : {{ projectLocation }}</td>
+                  </tr>
+                  <tr>
+                    <td>Sample</td>
+                    <td> : {{ projectSample }}</td>
+                  </tr>
+                  <tr>
+                    <td>Days</td>
+                    <td> : {{ projectDays }}</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+      <ion-col size=12  class="vertical">
+        <table>
+          <thead>
+            <tr class="table-header">
+              <th class="header-info" style="width: 35%;">Date</th>
+              <th class="header-info" style="width: 65%;">Assessor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-body">
+              <td class="body-info">{{ projectDate }}</td>
+              <td class="body-info-s">
+                <div *ngFor="let assessor of partners;">
+                  <span >{{ assessor.name }}</span>
+                  <br/>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size=12>
+        <ion-button *ngFor="let task of tasks" class="btn-2" [disabled]="toDisabled" color="primary" size="small" (click)="chooseByCategory(task.category, task.type)">{{task.category}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="vertical">
+      <ion-col size-sm="12" size-xs="12" >
+        <div class="btn-group">
+          <ion-button *ngIf="userRole=='leader'" [disabled]="connectionStr == 'Offline'" class="btn-2" color="success" size="small" (click)="completedForm()">COMPLETE</ion-button>
+          <ion-button [disabled]="connectionStr == 'Offline'" class="btn-2" color="primary" size="small" (click)="syncData()">SYNC</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

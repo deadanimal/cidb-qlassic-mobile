@@ -1,0 +1,261 @@
+[
+    {
+        "category":"Architectural Works",
+        "type":1,
+        "items":[    
+            {
+                "topic":"Internal Finishes",
+                "type":3,
+                "subtopics":[
+                    {
+                        "subtopic":"Floor",
+                        "id":20,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    },
+                    {
+                        "subtopic":"Wall",
+                        "id":21,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Ceiling",
+                        "id":22,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    },
+                    {
+                        "subtopic":"Door",
+                        "id":23,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    },
+                    {
+                        "subtopic":"Window",
+                        "id":24,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    },
+                    {
+                        "subtopic":"Fixtures",
+                        "id":25,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    },
+                    {
+                        "subtopic":"B M & E Fittings",
+                        "id":26,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Cracks & Damages",
+                            "Hollowness & Delamination",
+                            "Joining"
+                        ],
+                        "sample":1
+                    }
+                ]
+            },
+            {
+                "topic":"Roof",
+                "type":4,
+                "id":27,
+                "checkbox":[
+                    "Finishing",
+                    "Alignment & Evenness",
+                    "Cracks & Damages",
+                    "Construction",
+                    "Joining"
+                ],
+                "sample":4
+            },
+            {
+                "topic":"External Wall",
+                "type":4,
+                "id":28,
+                "checkbox":[
+                    "Finishing",
+                    "Alignment & Evenness",
+                    "Cracks & Damages",
+                    "Joining",
+                    "Construction"
+                ],
+                "sample":4
+            },
+            {
+                "topic":"Apron Perimeter & Drain",
+                "type":4,
+                "id":29,
+                "checkbox":[
+                    "Finishing",
+                    "Alignment & Evenness",
+                    "Cracks & Damages",
+                    "Fall/Gradient",
+                    "Joints & Gaps"
+                ],
+                "sample":1
+            },
+            {
+                "topic":"Car Park / Car Porch",
+                "type":4,
+                "id":30,
+                "checkbox":[
+                    "Finishing",
+                    "Alignment & Evenness",
+                    "Materials & Damage",
+                    "Functionality",
+                    "Joints & Gaps"
+                ],
+                "sample":1
+            }
+        ]
+    },{
+        "category":"External Works",
+        "type":2,
+        "items":[
+            {
+                "topic":"Infastructure",
+                "subtopics":[
+                    {
+                        "subtopic":"Link-Way",
+                        "id":1,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"External Drain",
+                        "id":2,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Roadwork",
+                        "id":3,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Footpath and Turfing",
+                        "id":4,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Fence and Gate",
+                        "id":5,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    }
+                ]
+            },
+            {
+                "topic":"Facilities or Amenties",
+                "subtopics":[
+                    {
+                        "subtopic":"Swimming Pool",
+                        "id":6,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Playground",
+                        "id":7,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    },
+                    {
+                        "subtopic":"Court",
+                        "id":8,
+                        "checkbox":[
+                            "Finishing",
+                            "Alignment & Evenness",
+                            "Materials & Damages",
+                            "Functionality",
+                            "Joints & Gaps"
+                        ],
+                        "sample":2
+                    }
+                ]
+            }
+        ]
+    }
+]

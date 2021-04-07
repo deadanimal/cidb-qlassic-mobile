@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Work Completion Form</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-lg="6" size-md="8" size-sm="10" size-xs="10" offset-lg="3" offset-md="2" offset-sm="1"  offset-xs="1">
+      <h4>Applicant Information</h4>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Name</ion-label>
+        <ion-input class="header-input" type="text" #name ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">NRIC</ion-label>
+        <ion-input class="header-input" type="number" #nric ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Company</ion-label>
+        <ion-input class="header-input" type="text" #company ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Position</ion-label>
+        <ion-input class="header-input" type="text" #position ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Contact Number</ion-label>
+        <ion-input type="number" #contactNumber ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Email</ion-label>
+        <ion-input class="header-input" type="text" #email ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="floating">Weather Status</ion-label>
+        <ion-input class="header-input" type="text" #weather ></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" size-lg="6" size-md="8" size-sm="10" size-xs="10" offset-lg="3" offset-md="2" offset-sm="1"  offset-xs="1">
+      <h4>Assessment Information</h4>
+      <ion-item>
+        <ion-label class="header-label" position="stacked">Applicant Number</ion-label>
+        <ion-input class="header-input" type="text" value="{{applicantNumber}}" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="stacked">Project Location</ion-label>
+        <ion-input class="header-input" type="text" value="{{projectLocation}}" #nric readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="stacked">Assessment Date</ion-label>
+        <ion-input class="header-input" type="text" value="{{assessmentDate}}" #company readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="stacked">Lead Assessor</ion-label>
+        <ion-input class="header-input" type="text" value="{{leadAssessor}}" #position readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label class="header-label" position="stacked">Number of Sample</ion-label>
+        <ion-input class="header-input" type="number" value="{{numberOfSample}}" #contactNumber readonly></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" size-lg="6" size-md="8" size-sm="10" size-xs="10" offset-lg="3" offset-md="2" offset-sm="1"  offset-xs="1">
+      <ion-button [disabled]=" name.value=='' || nric.value=='' || company.value=='' || position.value=='' || contactNumber.value=='' || email.value=='' || weather.value==''" color="primary" size="small" (click)="submitForm(name.value,nric.value,company.value,position.value,contactNumber.value,email.value, weather.value)">Save</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
