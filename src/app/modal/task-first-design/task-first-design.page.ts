@@ -55,14 +55,17 @@ export class TaskFirstDesignPage implements OnInit {
     }
     let data = this.tasks[index];
     if(type == '3'){
+      // Internal Finishes
       this.storage.setItem('temporary', data);
       this.modalCtrl.dismiss();  
       this.router.navigate(['/app/tab/task-third-design']);
     }else if(type == '2'){
+      // External Finishes
       this.storage.setItem('temporary', data);
       this.modalCtrl.dismiss();  
       this.router.navigate(['/app/tab/task-second-design']);
     }else if(type == '4'){
+      // External Work
       this.storage.setItem('temporary', data);
       this.modalCtrl.dismiss();  
       this.router.navigate(['/app/tab/task-fourth-design']);

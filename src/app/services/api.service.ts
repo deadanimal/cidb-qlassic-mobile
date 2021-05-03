@@ -37,6 +37,7 @@ export class ApiService {
     return this.http.get<DocumentObject>(this.env.API_URL+'/getDocument/'+projectId)
   }
 
+  
   syncNow(formData:FormData){
     return this.http.post<ProjectDetailObject>(this.env.API_URL+'/sync',formData)
   }
@@ -169,7 +170,7 @@ export interface AgreementObject{
 export interface CompletionObject{
   projectId:string;
   message:string;
-  result:boolean;
+  result:string;
 }
 
 export interface ApplicationNoObject{

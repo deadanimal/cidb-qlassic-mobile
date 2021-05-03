@@ -13,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DocumentPage implements OnInit {
 
-  documents: any;
+  documents = [];
   projectId: any;
 
   connection: string;
@@ -45,7 +45,13 @@ export class DocumentPage implements OnInit {
 
     await this.storage.getItem(this.projectId+'_documents').then(
       data =>{
-        this.documents = data;
+        this.documents = data.filter((obj) => {
+          return obj.name.includes('Reviewed');
+        });
+        // data.forEach((obj) => {
+        //   if (obj.name.includes('Reviewed')) this.documents.push(obj);
+        // });
+        // this.documents = data;
       },
       error => console.error(error)
     );

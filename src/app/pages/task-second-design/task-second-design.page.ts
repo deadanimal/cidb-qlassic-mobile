@@ -78,7 +78,7 @@ export class TaskSecondDesignPage implements OnInit {
       data =>{
         this.projectId = data;
       },
-      error => console.error(error)
+      error => console.error('error projectId', error)
     );
     await this.storage.getItem('temporary').then(
       async data =>{
@@ -99,7 +99,7 @@ export class TaskSecondDesignPage implements OnInit {
         this.getDataSample(this.chooseSample);
 
       },
-      error => console.error(error)
+      error => console.error('error temporary', error)
     );
   }
 

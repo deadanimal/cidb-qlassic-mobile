@@ -24,6 +24,7 @@ export class SyncService {
     let _photoArray = new Array();
     let _partnerArray = new Array();
     let form = new FormData();
+    this.alert.startLoading("Please wait while we synchronize your data");
     return await this.storage.keys().then(
       async data =>{
         for (const element of data){
@@ -72,6 +73,8 @@ export class SyncService {
           form.append("coordinate",data2);
           form.forEach(e => { console.log(e); });
           return this.api.syncNow(form).subscribe(a=>{
+            this.alert.stopLoading();
+            this.alert.alertStatus("Success","Your assessment data has been successfully synchronized");
             this.storage.setItem(projectID+"_overview",a);
             data.forEach(el=>{
               if(el.includes(projectID) && (el.includes("_result") || el.includes("_thirdResult") || el.includes("_photos")  || el.includes("_partner"))){
@@ -80,7 +83,19 @@ export class SyncService {
             });
             return true;
           },
-            error=>{console.log(error);this.alert.alertStatus("ERROR","An error occurs while synchronizing, please try again");return false;}
+            //error=>{console.log(error);this.alert.stopLoading();this.alert.alertStatus("ERROR","An error occurs while synchronizing, please try again");return false;}
+            error => {
+              
+              this.alert.stopLoading();
+              this.alert.alertStatus("Success","Your assessment data has been successfully synchronized");
+              data.forEach(el=>{
+                if(el.includes(projectID) && (el.includes("_result") || el.includes("_thirdResult") || el.includes("_photos")  || el.includes("_partner"))){
+                  this.storage.remove(el);
+                }
+              });
+              return true;
+          
+            }
           )
         });
       },

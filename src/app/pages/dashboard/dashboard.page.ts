@@ -212,12 +212,13 @@ export class DashboardPage implements OnInit {
     }
   }
 
-  async completeCB(reply){
-    await this.alert.alertStatus("Task Completion","Fill in the Work Completion Form and submit");
+  completeCB(reply){
     if(reply){
-      await this.syncData();
+      this.syncData();
+    }else{
+      this.alert.alertStatus("Task Completion","Fill in the Work Completion Form and submit");
+      this.router.navigate(['/app/tab/complete']);
     }
-    this.router.navigate(['/app/tab/complete']);
   }
   
   async completedForm(){
@@ -267,25 +268,31 @@ export class DashboardPage implements OnInit {
     return await modal.present();  
   }
 
-  async syncData(){
+  syncData(){
     if(this.projectId != undefined){
-      await this.alert.promptUser("Warning","You are about to synchronize your data, do you want to continue?",async(button)=>{
+      this.alert.promptUser("Warning","You are about to synchronize your data, do you want to continue?",(button)=>{
         if(button == true){
-          await this.alert.startLoading("Please wait while we synchronize your data");
-          await this.sync.syncNow(this.projectId).then(
-            async data=>{
+          //  this.alert.startLoading("Please wait while we synchronize your data");
+           this.sync.syncNow(this.projectId)/*.then(
+             data=>{
+              console.log("data syncData", data);
+              if (data) {
+                this.alert.stopLoading();
+                this.alert.alertStatus("Success","Your assessment data has been successfully synchronized");
+              } else {
+                this.alert.stopLoading();
+                this.alert.alertStatus("Failure","There is an error while synchronizing, please try again");
+              }
+            }, err=>{
               this.alert.stopLoading();
-              this.alert.alertStatus("Success","Your assessment data has been successfully synchronized");
-            },async err=>{
-              await this.alert.stopLoading();
-              await this.alert.alertStatus("Failure","There is an error while synchronizing, please try again: "+err);
+              this.alert.alertStatus("Failure","There is an error while synchronizing, please try again: "+err);
             }
-          );
+          );*/
         }
       },this);
       
     }else{
-      await this.alert.alertStatus("Warning","Please select a project to synchronize");
+      this.alert.alertStatus("Warning","Please select a project to synchronize");
     }
   }
   

@@ -37,6 +37,7 @@ export class CompletePage implements OnInit {
       data=>{
         this.storage.getItem(data+"_project_information_detail").then(
           item=>{
+            console.log("item ionViewWillEnter CompletePage", item);
             let _data:Project = item;
             this.projectLocation = _data.location;
             this.assessmentDate = _data.date;
@@ -46,16 +47,20 @@ export class CompletePage implements OnInit {
             this.storage.getItem("attendances").then(data2=>{
               this.attendance = data2;
             })
+            this.api.getApplicationNo(this.projectId).subscribe(data1=>{
+              this.applicantNumber = data1.applicationNo;
+              console.log(this.applicantNumber);
+            });
           },
           error=>{console.error(error)}
         );
       },
       err=>{console.error(err)}
     );
-    this.api.getApplicationNo(this.projectId).subscribe(data1=>{
-      this.applicantNumber = data1.applicationNo;
-      console.log(this.applicantNumber);
-    });
+    // this.api.getApplicationNo(this.projectId).subscribe(data1=>{
+    //   this.applicantNumber = data1.applicationNo;
+    //   console.log(this.applicantNumber);
+    // });
   }
 
   async submitForm(name,nric,company,position,contactNumber,email,weather){

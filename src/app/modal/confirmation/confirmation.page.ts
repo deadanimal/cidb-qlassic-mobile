@@ -128,38 +128,65 @@ export class ConfirmationPage implements OnInit,AfterViewInit {
       });
       this.api.completeTask(this.formData).subscribe(
         data=>{
-          if(data.result == true){
-            this.alertService.alertStatus("Complete","You have completed the task");
+          this.alertService.stopLoading();
+          console.log("data completeTask ConfirmationPage", data);
+          if(data.result == "true"){
+            console.log("data.result", data.result);
+            this.alertService.promptUser("Complete","You have completed the task",(button)=>{
+              if(button == true){
+                this.logout();
+              }
+            },this);
+            // this.alertService.alertStatus("Complete","You have completed the task");
             this.getAllLocal(data.projectId);
-          } else if (data.result == false){
+          } else if (data.result == "false"){
+            console.log("data.result", data.result);
             this.alertService.alertStatus("Error",data.message);
-          }else{
+          }/*else{
             this.alertService.alertStatus("Error","Some error occurs, please try again");
-          }
+          }*/
         },
         error=>{
-          this.alertService.alertStatus("Error","Some error occurs, please try again, please make sure you are connected to the internet: "+ error);
+          this.alertService.stopLoading();
+          // this.alertService.alertStatus("Error","Some error occurs, please try again, please make sure you are connected to the internet: "+ error);
+          this.alertService.alertStatus("Error","Some error occurs, please try again");
         }
       );
-      await this.alertService.stopLoading();
-      this.modalCtrl.dismiss();
+      // await this.alertService.stopLoading();
+      // this.modalCtrl.dismiss();
 
-      this.authService.logout().subscribe(
-        data => {
-          this.alertService.presentToast("Project Completed!! System auto logged out");        
-        },
-        error => {
-          console.log(error);
-        },
-        () => {
-          this.navCtrl.navigateRoot('login');
-        }
-      );
+      // this.authService.logout().subscribe(
+      //   data => {
+      //     this.alertService.presentToast("Project Completed!! System auto logged out");        
+      //   },
+      //   error => {
+      //     console.log(error);
+      //   },
+      //   () => {
+      //     this.navCtrl.navigateRoot('login');
+      //   }
+      // );
 
     }else if(bool == false){
       this.modalCtrl.dismiss();  
       this.router.navigateByUrl('app/tab/dashboard');
     }
+  }
+
+  logout() {
+    this.modalCtrl.dismiss();
+
+    this.authService.logout().subscribe(
+      data => {
+        this.alertService.presentToast("Project Completed!! System auto logged out");        
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.navCtrl.navigateRoot('login');
+      }
+    );
   }
 
   async getAllLocal(projectId){

@@ -22,7 +22,7 @@
             <tr class="table-header">
               <th class="header-info" style="width: 10%;">No</th>
               <th class="header-info" style="width: 50%;">Document</th>
-              <th class="header-info" style="width: 20%;">Status</th>
+              <th class="header-info" style="width: 20%;">View</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +32,10 @@
                 <a *ngIf="document.status != 'Downloaded'" (click)="download(document.link, i, document.name)">{{ document.name }}</a>
                 <a *ngIf="document.status == 'Downloaded'" (click)="openPdf(document.name)">{{ document.name }}</a>
               </td>
-              <td class="body-info">{{ document.status }}</td>
+              <td class="body-info">
+                <!-- {{ document.status }} -->
+                <ion-button *ngIf="document.status == 'Downloaded'" color="primary" (click)="openPdf(document.name)">View</ion-button>
+              </td>
             </tr>
           </tbody>
         </table>

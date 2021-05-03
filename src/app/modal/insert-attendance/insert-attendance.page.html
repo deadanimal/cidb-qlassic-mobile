@@ -71,7 +71,7 @@
           <ion-col size="6">
             <ion-button class="button-submit" 
               [disabled]="attendanceName.value == '' || attendancePosition.value == '' || attendanceCompany.value == '' || attendanceContact.value  == ''"
-              (click)="saveAttendance(attendanceName.value,attendancePosition.value,attendanceCompany.value,attendanceContact.value);saveAttendance(dateAttendance.value, applicationNo.value);" 
+              (click)="saveAttendance(attendanceName.value,attendancePosition.value,attendanceCompany.value,attendanceContact.value)" 
               color="primary">Save</ion-button>
           </ion-col>
         </ion-row>
