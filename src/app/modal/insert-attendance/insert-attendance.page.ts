@@ -2,6 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../signature/signature.page';
+import { AlertService } from 'src/app/services/alert.service';
+import { AttendanceService } from 'src/app/services/attendance.service';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-insert-attendance',
@@ -9,6 +13,9 @@ import { SignaturePage } from '../signature/signature.page';
   styleUrls: ['./insert-attendance.page.scss'],
 })
 export class InsertAttendancePage implements OnInit {
+  projectId: string;
+  applicationNumber: string;
+  today: any;
 
   @Input() id: string;
   attendanceNameValue: string;
@@ -21,10 +28,27 @@ export class InsertAttendancePage implements OnInit {
   constructor(
     public modalCtrl: ModalController,
     private storage: NativeStorage,
+    public attendanceService: AttendanceService, 
+    public alertService: AlertService,
+    public datepipe: DatePipe
     ) { }
 
-  ngOnInit() {
-    this.initializeData();
+  async ngOnInit() {
+    await this.initializeData();
+
+    await this.storage.getItem('projectId').then(
+      data=>{
+        this.projectId = data;
+      }
+    );
+
+    await this.storage.getItem(this.projectId+"_appNumber").then(
+      data=>{
+        this.applicationNumber = data;
+      }
+    );
+
+
   }
   
   initializeData(){
@@ -61,9 +85,9 @@ export class InsertAttendancePage implements OnInit {
 
   }
 
-  saveAttendance(attendanceName,attendancePosition,attendanceCompany,attendanceContact){
+  async saveAttendance(attendanceName,attendancePosition,attendanceCompany,attendanceContact){
     
-    this.storage.getItem('attendances').then(
+    await this.storage.getItem('attendances').then(
       data =>{
         data[this.id].name = attendanceName;
         data[this.id].position = attendancePosition;
@@ -90,12 +114,34 @@ export class InsertAttendancePage implements OnInit {
           data.push(add);
         }
 
+        this.today =this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+
         this.storage.setItem('attendances', data);
-        this.modalCtrl.dismiss();  
+        console.log("data", data, "PID", this.projectId, "today", this.today, "appNo", this.applicationNumber);
+
+        this.attendanceService.save(this.projectId, this.today, this.applicationNumber, data)
+            .then(
+              data =>{
+                console.log("goes here");
+              },
+              error => {
+                console.error(error)
+                console.log("sampai sini");
+              }
+            )
+
+
+          
+
       },
       error => console.error(error)
     );
+    await this.modalCtrl.dismiss();  
   }
+
+  //saveAttendance(attendanceName,attendancePosition,attendanceCompany,attendanceContact){
+
+  //}
 
   async signature(){
     const modal = await this.modalCtrl.create({  

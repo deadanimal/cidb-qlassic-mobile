@@ -15,12 +15,11 @@ export class TaskThirdDesignPage implements OnInit {
   projectId: string;
   taskId: string;
   taskName: string;
-  chooseSample: number;
+  chooseSample: number = 0;
   tempData: any;
   data: any;
   resultsArray: any;
-  totalSampling: number;
-  samplingDone: number;
+  totalSampling: number; samplingDone: number;
   pDone: number;
   sDone: number;
   cDone: number;
@@ -62,6 +61,7 @@ export class TaskThirdDesignPage implements OnInit {
   }
   
   ionViewWillEnter() {
+    this.chooseSample = 1;
     this.initializeData();
     setInterval(() => {
       this.period = Date.now() - this.periodStart;
@@ -104,6 +104,7 @@ export class TaskThirdDesignPage implements OnInit {
     await this.result.getThirdResult(this.projectId,this.taskId,sample,this.tempData).then(
      async data=>{
         this.data=data;
+        console.log("data", this.data);
     
         this.resultsArray = this.data.topics;
         if(this.data.block != ''){
@@ -139,6 +140,7 @@ export class TaskThirdDesignPage implements OnInit {
             this.pDone = data.p;
             this.sDone = data.s;
             this.cDone = data.c;
+            console.log("lapar", this.pDone, this.sDone, this.cDone);
 
             this.samplingDone = this.pDone + this.sDone + this.cDone;
     

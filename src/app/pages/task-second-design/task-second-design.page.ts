@@ -147,6 +147,7 @@ export class TaskSecondDesignPage implements OnInit {
     this.resultRemark = resultArrays.remark;
     this.sampleRan = resultArrays.sampleRun;
     this.sampleRanTotal = this.sampleRan.length;
+    console.log("got called", this.sampleRanTotal);
     
     if(this.sampleRanTotal <= 3){
       this.sampleRan = resultArrays.sampleRun;
@@ -213,10 +214,12 @@ export class TaskSecondDesignPage implements OnInit {
   }
 
   nextSample(){
-    if(this.chooseSample<this.sampleRanTotal){
-      this.chooseSample++;
-      this.getDataSample(this.chooseSample);
-    }
+    // if(this.chooseSample<this.sampleRanTotal){
+    //   this.chooseSample++;
+    //   this.getDataSample(this.chooseSample);
+    // }
+    this.chooseSample++;
+    this.getDataSample(this.chooseSample);
   } 
   
   async takePic(id){

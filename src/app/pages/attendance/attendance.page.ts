@@ -83,6 +83,7 @@ export class AttendancePage implements OnInit {
       this.storage.getItem('attendances').then(
         data =>{
           this.attendances = data;
+          console.log("after close", this.attendances);
         },
         error => console.error(error)
       );
@@ -91,6 +92,7 @@ export class AttendancePage implements OnInit {
   }
 
   async saveAttendance(dateAttendance, applicationNo){
+    console.log("attendances", this.attendances, "dateAttendance", dateAttendance, "appNo", applicationNo)
     await this.attendanceService.save(this.projectId, dateAttendance, applicationNo,this.attendances)
       .then(
         data =>{

@@ -1,6 +1,6 @@
 <ion-content padding>
   <ion-grid>
-    <ion-row class="header-label">
+ disabled    <ion-row class="header-label">
       <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
         <ion-item class="header-label" lines="none">
           <ion-label [ngClass]="{
@@ -40,7 +40,7 @@
       </ion-col>
       <ion-col size-xl=5 size-lg="5" size-sm="5" size-xs="7">
         <ion-item class="header-input">
-          <ion-input type="text" value={{userName}}></ion-input>
+          <ion-input class="text-dark" type="text" value={{userName}} disabled></ion-input>
         </ion-item>
       </ion-col>
       <ion-col size-xl=2 size-lg="2" size-sm="2" size-xs="5">
@@ -50,7 +50,7 @@
       </ion-col>
       <ion-col size-xl=3 size-lg="3" size-sm="3" size-xs="7">
         <ion-item class="header-input">
-          <ion-input type="number" value={{userNric}} readonly></ion-input>
+          <ion-input type="number" value={{userNric}} readonly disabled></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -74,7 +74,7 @@
       </ion-col>
       <ion-col size-xl=3 size-lg="3" size-sm="3" size-xs="7">
         <ion-item class="header-input">
-          <ion-input type="number" value={{partnerNric}} readonly></ion-input>
+          <ion-input type="number" value={{partnerNric}} readonly disabled></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
