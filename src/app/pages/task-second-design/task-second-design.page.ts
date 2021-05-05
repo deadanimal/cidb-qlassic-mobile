@@ -45,16 +45,23 @@ export class TaskSecondDesignPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.chooseSample = 1;
     this.initializeData();
   }  
+
+  initializeSample() {
+  }
   
   selectTask(id,topic,subtopic){
     this.taskId = id;
     this.taskId = this.tasks.items[topic].subtopics[subtopic].id;
     this.checkbox = this.tasks.items[topic].subtopics[subtopic].checkbox;
     this.samplePerTask = this.tasks.items[topic].subtopics[subtopic].sample;
-    this.getDataSample(1);
+    //this.getDataSample(1);
+
+    // get infra len
+    let templen = this.totalSample[id];
+    this.chooseSample = templen + 1;
+    this.getDataSample(this.chooseSample);
   }
 
   async recalculateSamples(topics){
@@ -87,7 +94,7 @@ export class TaskSecondDesignPage implements OnInit {
         this.topics = this.tasks.items;
         this.topicsTotal = this.topics.length;
 
-        this.taskId = this.tasks.items[0].subtopics[0].id;
+        //this.taskId = this.tasks.items[0].subtopics[0].id;
         this.checkbox = this.tasks.items[0].subtopics[0].checkbox;
         this.samplePerTask = this.tasks.items[0].subtopics[0].sample;
         this.photoKey = this.projectId + '_' + this.taskId + '_' + this.chooseSample + '_photos';
@@ -147,8 +154,7 @@ export class TaskSecondDesignPage implements OnInit {
     this.resultRemark = resultArrays.remark;
     this.sampleRan = resultArrays.sampleRun;
     this.sampleRanTotal = this.sampleRan.length;
-    console.log("got called", this.sampleRanTotal);
-    
+
     if(this.sampleRanTotal <= 3){
       this.sampleRan = resultArrays.sampleRun;
     }else if(this.sampleRanTotal > 3 && this.chooseSample == 1){
@@ -211,6 +217,7 @@ export class TaskSecondDesignPage implements OnInit {
   goToSample(sample){
     this.chooseSample = sample;
     this.getDataSample(sample);
+    console.log("sample", sample);
   }
 
   nextSample(){

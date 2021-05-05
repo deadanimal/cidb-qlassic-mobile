@@ -11,6 +11,7 @@ import { Project,Assessor, ApiService } from 'src/app/services/api.service';
 import { SyncService } from 'src/app/services/sync.service';
 import { AlertService } from 'src/app/services/alert.service';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
@@ -25,8 +26,7 @@ export class DashboardPage implements OnInit {
   selectProjectValue:string;
   userName: string;
   userNric: string;
-  userRole: string;
-  partners: Assessor[];
+  userRole: string; partners: Assessor[];
   assessors: Assessor[];
   partnerNric: string;
   selectPartnerValue:string;
@@ -52,9 +52,12 @@ export class DashboardPage implements OnInit {
     private sync:SyncService,
     private alert:AlertService,
     private alertController:AlertController,
+    private projectDetail: ProjectDetailService,
+
   ) { }
 
   ngOnInit() {
+    this.projectDetail.initProjectDetail();
     this.initializedData();
     this.onChangeProject('');
     this.toDisabled = true;    
@@ -65,14 +68,17 @@ export class DashboardPage implements OnInit {
             if(data.status == 'OK'){
               this.connectionStr = 'Online';    
               this.connection = true;
+
             }else{
               this.connectionStr = 'Offline';  
               this.connection = false;  
+
             }
           },
           error => {
             this.connectionStr = 'Offline';  
             this.connection = false;    
+
             console.log(error)
           }
         )
@@ -81,7 +87,6 @@ export class DashboardPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    
   }
 
   async initializedData(){
@@ -103,12 +108,12 @@ export class DashboardPage implements OnInit {
     this.userNric = this.user.id;
   }
 
-  onChangeProject(selectProject){
+  async onChangeProject(selectProject){
 
     if(selectProject == ''){
       this.toDisabled = true; 
       this.storage.remove('projectId');
-    }else{
+    } else{
       this.toDisabled = false;  
   
       let i = 0;
@@ -120,13 +125,12 @@ export class DashboardPage implements OnInit {
         i++;
       }
 
-      
       console.log(this.projects[index]);
       console.log("this id:"+this.projects[index].id);
       
       this.projectId = this.projects[index].id;
       this.storage.setItem('projectId', this.projectId);
-      
+
       let partnerInformation = {
         'name': '',
         'nric': ''
@@ -161,6 +165,8 @@ export class DashboardPage implements OnInit {
           this.storage.setItem('tasks', this.tasks);
         }
       );
+
+
     };
   }
 

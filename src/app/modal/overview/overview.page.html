@@ -65,8 +65,13 @@
             <tr>
               <th>Total</th>
               <ng-container *ngFor="let title of header;">
-                <th [attr.colspan]="title.subtopictotal" *ngIf="title.type == 1">{{title.complete}}/{{title.total}}</th>
-                <th *ngIf="title.type == 2">{{title.complete}}</th>
+                <th *ngIf="title.type != 2">{{ pDone }}/{{ pTotal }}</th>
+                <th *ngIf="title.type != 2">{{ sDone }}/{{ sTotal }}</th>
+                <th *ngIf="title.type != 2">{{ cDone}}/{{ cTotal }}</th>
+
+                <th [attr.colspan]="4" *ngIf="title.type == 1">
+                  {{ externalDone }}/{{  externalTotal }}
+                <th *ngIf="title.type == 2">{{ externalWork }}</th>
               </ng-container>
             </tr>
           </tfoot>
