@@ -62,6 +62,10 @@ export class SyncService {
               });
           }
         };
+
+        console.log("checking on sync button");
+        console.log("resultArray1 content", _resultArray1);
+        console.log("resultArray2 content", _resultArray2);
         form.append("result1", JSON.stringify(_resultArray1).toString());
         form.append("result2", JSON.stringify(_resultArray2).toString());
         form.append("photos", JSON.stringify(_photoArray).toString());
@@ -71,7 +75,9 @@ export class SyncService {
         form.append("assessorId",this.user.id);
         return await this.location.getLocation().then(data2=>{
           form.append("coordinate",data2);
-          form.forEach(e => { console.log(e); });
+          form.forEach(e => { console.log("Total data", e); });
+
+          // calling to API to send data
           return this.api.syncNow(form).subscribe(a=>{
             this.alert.stopLoading();
             this.alert.alertStatus("Success","Your assessment data has been successfully synchronized");

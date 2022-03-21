@@ -12,6 +12,7 @@ export class ResultsService {
     private nativeStorage: NativeStorage
   ) { }
 
+  
   async save(projectId:string, testId:string, index:number, result:any){
     index = index -1;
     return this.nativeStorage.getItem(projectId+'_'+testId+'_result')
@@ -225,6 +226,7 @@ export class ResultsService {
     return this.nativeStorage.getItem(projectId+'_'+testId+'_thirdResult')
     .then(
       data => {
+          console.log("data after assessment save", data);
           data[index] = result;
           return this.nativeStorage.setItem(projectId+'_'+testId+'_thirdResult',data)
           .then(

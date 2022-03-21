@@ -45,6 +45,7 @@ export class DocumentPage implements OnInit {
 
     await this.storage.getItem(this.projectId+'_documents').then(
       data =>{
+        console.log("de data", data);
         this.documents = data.filter((obj) => {
           return obj.name.includes('Reviewed');
         });

@@ -57,10 +57,11 @@ export class DashboardPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.projectDetail.initProjectDetail();
     this.initializedData();
     this.onChangeProject('');
     this.toDisabled = true;    
+    this.checkTask();
+    
     setInterval(() => {    
       this.api.isServerConnected()
         .subscribe(
@@ -84,9 +85,22 @@ export class DashboardPage implements OnInit {
         )
     }, 5000);
 
+     
+
   }
 
   ionViewWillEnter() {
+  }
+
+  checkTask() {
+      this.storage.getItem("tasks").then(
+        data=>{
+          console.log("data", data);
+        }
+      ).catch(err=>{
+        this.alert.startLoading("Initializing Data...");
+        setTimeout(() => { this.alert.stopLoading() }, 60000)
+      });
   }
 
   async initializedData(){

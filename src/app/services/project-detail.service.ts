@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Project,ProjectDetailObject,ApiService} from 'src/app/services/api.service'
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { AlertService } from 'src/app/services/alert.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,11 @@ export class ProjectDetailService {
   public projectDetailList:Object[];
   constructor(
     private api:ApiService,
-    private nativeStorage:NativeStorage
+    private nativeStorage:NativeStorage,
+    private alert:AlertService,
   ) { }
 
-  initProjectDetail(){
+  async initProjectDetail(){
     console.log('project list', this.projectList)
     this.projectList.forEach(async element => {
       let formData = new FormData();

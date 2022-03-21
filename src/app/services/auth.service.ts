@@ -7,6 +7,7 @@ import { User } from '../model/user';
 import {ApiService} from 'src/app/services/api.service';
 import {ProjectDetailService} from 'src/app/services/project-detail.service';
 import {UserDetailService} from 'src/app/services/user-detail.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,8 @@ export class AuthService {
     private api: ApiService,
     private projectDetail: ProjectDetailService,
     private userDetail: UserDetailService,
+    private alert:AlertService,
+
   ) { }
 
   login(email: string, password: string) {
@@ -42,9 +45,11 @@ export class AuthService {
             this.userDetail.email = data.email;
             this.userDetail.role = data.role;
             this.storage.setItem('token', this.token)
-            if (this.projectDetail.projectList) {
-              this.projectDetail.initProjectDetail();
-            }
+            //if (this.projectDetail.projectList) {
+            this.projectDetail.initProjectDetail();
+            // this.alert.startLoading("Initializing Data...");
+            // setTimeout(() => { this.alert.stopLoading() }, 45000)
+            //}
             this.storage.setItem('isLoggedIn',data);
         }
       },

@@ -218,7 +218,6 @@ export class TaskThirdDesignPage implements OnInit {
     this.data.testType = this.testType;
     this.data.selectionValue = this.selectionValue;
     this.data.photo = this.photo;
-    console.log('this.photo after save', this.photo);
     
     await this.result.saveThird(this.projectId,this.taskId,this.chooseSample,this.data).then(
       async data=>{

@@ -25,8 +25,8 @@ export class LoginPage implements OnInit {
     private s: NativeStorage,
     private router:  Router) { }
 
-  async ngOnInit() {
-    await this.authService.continue().then(data=>{
+  ngOnInit() {
+    this.authService.continue().then(data=>{
       if(data == true){
         this.alertService.presentToast("Logged In");
           this.router.navigateByUrl(this.returnUrl);
@@ -34,18 +34,20 @@ export class LoginPage implements OnInit {
     })
   }
 
-  async login(form: NgForm) {
+  // maybe remove from here
+  login(form: NgForm) {
     if(form.value.email == "" || form.value.password == ""){
       this.alertService.presentToast("Please enter Email and Password");
       return
     }
-    await this.alertService.startLoading("Please wait");
+    this.alertService.startLoading("Please wait");
     this.authService.login(form.value.email, form.value.password).subscribe(
       (data) => {
         this.alertService.stopLoading();
         if(data.status == "success"){
           this.alertService.presentToast("Logged In");
           this.router.navigateByUrl(this.returnUrl);
+          
         }else{
           this.alertService.presentToast("Your password or id is not valid");
         }
