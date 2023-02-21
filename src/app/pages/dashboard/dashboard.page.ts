@@ -11,13 +11,13 @@ import { Project,Assessor, ApiService } from 'src/app/services/api.service';
 import { SyncService } from 'src/app/services/sync.service';
 import { AlertService } from 'src/app/services/alert.service';
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
+  userLocation: any;
 
   connectionStr: string;
   connection: boolean;
@@ -53,14 +53,16 @@ export class DashboardPage implements OnInit {
     private alert:AlertService,
     private alertController:AlertController,
     private projectDetail: ProjectDetailService,
+    
 
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initializedData();
     this.onChangeProject('');
     this.toDisabled = true;    
     this.checkTask();
+    this.userLocation = await this.user.getUserLocation();
     
     setInterval(() => {    
       this.api.isServerConnected()
@@ -178,7 +180,12 @@ export class DashboardPage implements OnInit {
           this.tasks = data;
           this.storage.setItem('tasks', this.tasks);
         }
-      );
+      ).finally(
+        ()=>{
+          // this.refresh()
+        }
+
+      )
 
 
     };
@@ -315,5 +322,21 @@ export class DashboardPage implements OnInit {
       this.alert.alertStatus("Warning","Please select a project to synchronize");
     }
   }
+
+  refresh(){
+    console.log("refresh");
+
+    setInterval(() => {
+      console.log("refresh");
+      this.storage.getItem(this.projectId+"_project_detail").then(
+        data=>{
+          this.tasks = data;
+          this.storage.setItem('tasks', this.tasks);
+        }
+      );
+    }, 3000);
+  }
+
+ 
   
 }

@@ -4,14 +4,16 @@ import { ModalController } from '@ionic/angular';
 import { CameraPage } from 'src/app/modal/camera/camera.page';
 import { ResultsService } from 'src/app/services/results.service'
 import { AlertService } from '../../services/alert.service';
-
+import { UserDetailService } from 'src/app/services/user-detail.service';
+// import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
 @Component({
   selector: 'app-task-third-design',
   templateUrl: './task-third-design.page.html',
   styleUrls: ['./task-third-design.page.scss'],
 })
 export class TaskThirdDesignPage implements OnInit {
-
+  listenUpdates = true;
+  userLocation: any;
   projectId: string;
   taskId: string;
   taskName: string;
@@ -52,12 +54,27 @@ export class TaskThirdDesignPage implements OnInit {
     private storage: NativeStorage,
     private result: ResultsService,
     private alertService: AlertService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private user: UserDetailService,
+    // private androidPermissions: AndroidPermissions
     ) {
     }
 
   ngOnInit() {
     this.chooseSample = 1;
+    this.getData(1);
+
+    
+
+    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.GEOLOCATION).then(
+    //   result => console.warn('Has Geolocation permission?',result.hasPermission),
+    //   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GEOLOCATION)
+    // );
+
+    this.userLocation = this.user.getUserLocation();
+
+
+
   }
   
   ionViewWillEnter() {
@@ -101,65 +118,20 @@ export class TaskThirdDesignPage implements OnInit {
 
   async getDataSample(sample){
     
-    await this.result.getThirdResult(this.projectId,this.taskId,sample,this.tempData).then(
-     async data=>{
-        this.data=data;
-        console.log("data", this.data);
+    setInterval(async () => {
+      if(this.listenUpdates == true){
+        console.log("refreshing data");
+        this.getData(sample)
+        
+      }
+
+      else{
+        console.log("not refreshing data");
+      }
+   
+      }, 5000);
+
     
-        this.resultsArray = this.data.topics;
-        if(this.data.block != ''){
-          this.blockValue = this.data.block;
-        }else{
-          this.blockValue;
-        }
-        this.unitValue = this.data.unit;
-        this.testType = this.data.testType;
-        this.onChangeTestType(this.testType);
-        this.selectionValue = this.data.selectionValue;
-        this.compareWith = this.compareFn;
-        let timePeriod = this.data.period;
-        if(this.data.period = ""){
-          this.periodStart = Date.now();
-        }else{
-          this.periodStart = Date.now() - timePeriod;
-        }
-
-        if(this.data.photo == undefined || this.data.photo == ""){
-          this.photo = "assets/add.png";
-          this.addPhotoButton = "";
-        }else{
-          this.photo = this.data.photo;
-          this.addPhotoButton = "A photo captured"
-        }
-
-        console.log('this.data.photo', this.data.photo)
-        console.log('this.photo', this.photo)
-        console.log('get data')
-        await this.result.getPSC(this.projectId, this.taskId).then(
-          data=>{
-            this.pDone = data.p;
-            this.sDone = data.s;
-            this.cDone = data.c;
-            console.log("lapar", this.pDone, this.sDone, this.cDone);
-
-            this.samplingDone = this.pDone + this.sDone + this.cDone;
-    
-          },
-          err=>{console.error(err);}
-        );
-
-      },
-      err=>{console.error(err);}
-    );
-
-    this.numberOfTopics = this.resultsArray.length;
-
-    this.checkYes = new Array<number>(this.numberOfTopics);
-    this.checkYes.fill(0);
-    this.checkTrue = new Array<number>(this.numberOfTopics);
-    this.checkTrue.fill(0);
-
-    this.initializeResult();
   }
   
   compareFn(e1, e2): boolean {
@@ -333,4 +305,67 @@ export class TaskThirdDesignPage implements OnInit {
     return await modal.present();  
   }
 
+ async getData(sample: any){
+    await this.result.getThirdResult(this.projectId,this.taskId,sample,this.tempData).then(
+      async data=>{
+         this.data=data;
+         console.log("data", this.data);
+     
+         this.resultsArray = this.data.topics;
+         if(this.data.block != ''){
+           this.blockValue = this.data.block;
+         }else{
+           this.blockValue;
+         }
+         this.unitValue = this.data.unit;
+         this.testType = this.data.testType;
+         this.onChangeTestType(this.testType);
+         this.selectionValue = this.data.selectionValue;
+         this.compareWith = this.compareFn;
+         let timePeriod = this.data.period;
+         if(this.data.period = ""){
+           this.periodStart = Date.now();
+         }else{
+           this.periodStart = Date.now() - timePeriod;
+         }
+ 
+         if(this.data.photo == undefined || this.data.photo == ""){
+           this.photo = "assets/add.png";
+           this.addPhotoButton = "";
+         }else{
+           this.photo = this.data.photo;
+           this.addPhotoButton = "A photo captured"
+         }
+ 
+         console.log('this.data.photo', this.data.photo)
+         console.log('this.photo', this.photo)
+         console.log('get data')
+         await this.result.getPSC(this.projectId, this.taskId).then(
+           data=>{
+             this.pDone = data.p;
+             this.sDone = data.s;
+             this.cDone = data.c;
+             console.log("lapar", this.pDone, this.sDone, this.cDone);
+ 
+             this.samplingDone = this.pDone + this.sDone + this.cDone;
+     
+           },
+           err=>{console.error(err);}
+         );
+ 
+       },
+       err=>{console.error(err);}
+     );
+
+     this.numberOfTopics = this.resultsArray.length;
+
+  this.checkYes = new Array<number>(this.numberOfTopics);
+  this.checkYes.fill(0);
+  this.checkTrue = new Array<number>(this.numberOfTopics);
+  this.checkTrue.fill(0);
+
+  this.initializeResult();
+  }
+
+ 
 }

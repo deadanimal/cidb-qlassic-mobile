@@ -1,6 +1,13 @@
 <ion-content>
   <ion-grid>
-
+  <ion-row>
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>listen Updates</ion-label>
+        <ion-toggle [value]="listenUpdates" [(ngModel)]="listenUpdates" slot="end"></ion-toggle>
+      </ion-item>
+    </ion-col>
+    </ion-row>
     <ion-row class="tab-title">
       <ion-col size="2">
         <img src="../../../assets/qlassic.png" height="40px"/>

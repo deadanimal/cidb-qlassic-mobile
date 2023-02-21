@@ -22,12 +22,18 @@ export class ProjectDetailService {
     this.projectList.forEach(async element => {
       let formData = new FormData();
       formData.append("projectID",element.id)
-      await this.api.getProjectData(formData).subscribe(
-        data=>{
-          this.nativeStorage.setItem(element.id+"_project_detail",data);
-        },
-        error=>{}
-      )
+     
+
+
+        await this.api.getProjectData(formData).subscribe(
+          data=>{
+            this.nativeStorage.setItem(element.id+"_project_detail",data);
+          },
+          error=>{}
+        )
+    
+
+
       await this.api.getOverview(element.id).subscribe(
         data=>{
           this.nativeStorage.setItem(element.id+"_overview",data);

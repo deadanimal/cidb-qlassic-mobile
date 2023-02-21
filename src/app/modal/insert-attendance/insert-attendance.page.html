@@ -16,7 +16,7 @@
           <ion-col size="12">
             <ion-item lines="none">
               <ion-label position="fixed">Name</ion-label>
-              <ion-input type="text" #attendanceName value={{attendanceNameValue}} ></ion-input>
+              <ion-input type="text" #attendanceName value={{attendanceNameValue}} oninput="this.value = this.value.toUpperCase()"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -26,7 +26,7 @@
               <ion-col size="12">
                 <ion-item lines="none">
                   <ion-label position="fixed">Position</ion-label>
-                  <ion-input type="text" #attendancePosition value={{attendancePositionValue}}></ion-input>
+                  <ion-input type="text" #attendancePosition value={{attendancePositionValue}} oninput="this.value = this.value.toUpperCase()"></ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
@@ -34,7 +34,7 @@
               <ion-col size="12">
                 <ion-item lines="none">
                   <ion-label position="fixed">Company</ion-label>
-                  <ion-input type="text" #attendanceCompany value={{attendanceCompanyValue}}></ion-input>
+                  <ion-input type="text" #attendanceCompany value={{attendanceCompanyValue}} oninput="this.value = this.value.toUpperCase()"></ion-input>
                 </ion-item>
               </ion-col>
             </ion-row>
