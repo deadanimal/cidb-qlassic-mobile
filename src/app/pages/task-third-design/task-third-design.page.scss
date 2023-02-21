@@ -88,6 +88,9 @@ ion-content{
 
 .tab-information{
     margin-top: 15px;
+    flex-wrap: nowrap;
+    overflow-x: scroll!important;
+    overflow-y: hidden;
 
     .border-top{
         border-top: solid 2px rgb(85, 85, 85) !important;
@@ -103,8 +106,8 @@ ion-content{
     }
 
     table{
-        width: 100%;
-        table-layout: fixed;
+        width: 200vh;
+        // table-layout: fixed;
         td{
             border: solid 1px rgb(151, 151, 151);
         }
@@ -137,8 +140,8 @@ ion-content{
             div{
 
                 margin-top: 5px;
-                height: 96%;
-                width: 96%;
+                height: 5vh;
+                width: 5vh;
                 border-radius: 5px;
                 text-align: center;
                 border: 3px solid lightgray;
