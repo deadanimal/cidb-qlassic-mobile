@@ -1,7 +1,8 @@
 {
   "name": "qlassic",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

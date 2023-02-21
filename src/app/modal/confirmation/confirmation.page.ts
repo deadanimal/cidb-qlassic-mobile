@@ -196,6 +196,7 @@ export class ConfirmationPage implements OnInit,AfterViewInit {
           this.storage.remove(d[i]);
         }
       }
+      console.log('init project detail')
       this.project.initProjectDetail();
     },(e)=>{
       console.log('getting err',e);

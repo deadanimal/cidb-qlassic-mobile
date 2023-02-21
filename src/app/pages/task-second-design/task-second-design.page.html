@@ -72,7 +72,7 @@
         <ion-row class="secondColRowMiddle">
           <ion-col class="remarksBox">
               <ion-label position="fixed">Remark</ion-label>
-              <ion-textarea  #remarkInput value="{{resultRemark}}" rows="2"></ion-textarea>
+              <ion-textarea  #remarkInput value="{{resultRemark}}" rows="9" oninput="this.value = this.value.toUpperCase()"></ion-textarea>
           </ion-col>
         </ion-row>
         <ion-row>

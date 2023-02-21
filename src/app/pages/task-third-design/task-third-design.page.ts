@@ -134,7 +134,7 @@ export class TaskThirdDesignPage implements OnInit {
 
         console.log('this.data.photo', this.data.photo)
         console.log('this.photo', this.photo)
-        
+        console.log('get data')
         await this.result.getPSC(this.projectId, this.taskId).then(
           data=>{
             this.pDone = data.p;

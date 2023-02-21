@@ -15,13 +15,13 @@
       <ion-col size="2">
         <div class="box-border">
           <div class="box-label">Block</div>
-          <div class="box-input"><ion-input type="text" [(ngModel)]="blockValue" (ionChange)="initializeResult()"></ion-input></div>
+          <div class="box-input"><ion-input type="text" [(ngModel)]="blockValue" (ionChange)="initializeResult()" oninput="this.value = this.value.toUpperCase()"></ion-input></div>
         </div>
       </ion-col>
       <ion-col size="2">
         <div class="box-border">
           <div class="box-label">Unit</div>
-          <div class="box-input"><ion-input type="text" [(ngModel)]="unitValue" (ionChange)="initializeResult()"></ion-input></div>
+          <div class="box-input"><ion-input type="text" [(ngModel)]="unitValue" (ionChange)="initializeResult()" oninput="this.value = this.value.toUpperCase()"></ion-input></div>
         </div>
       </ion-col>
       <ion-col size="2">
@@ -131,9 +131,9 @@
                         'signTrue': result == 'Yes', 
                         'signFalse': result == 'No', 
                         'signNone': result == 'None'}" (click)="changeResult(result,i,j,k)">
-                        <ion-icon *ngIf="result == 'Yes'" name="checkmark-outline"></ion-icon>
-                        <ion-icon *ngIf="result == 'No'" name="close-outline"></ion-icon>
-                        <ion-label *ngIf="result == 'NA'">O</ion-label>
+                        <ion-icon *ngIf="result == 'Yes'" name="checkmark-outline" size="small"></ion-icon>
+                        <ion-icon *ngIf="result == 'No'" name="close-outline" size="small"></ion-icon>
+                        <ion-label *ngIf="result == 'NA'" >O</ion-label>
                         <ion-label *ngIf="result == 'None'">N</ion-label>
                     </div>
                 </td>
