@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Geolocation } from '@capacitor/geolocation';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,4 +13,11 @@ export class UserDetailService {
   public role:string;
 
   constructor() { }
+
+  async getUserLocation(){
+
+  return  Geolocation.getCurrentPosition();
+  
+
+  }
 }
