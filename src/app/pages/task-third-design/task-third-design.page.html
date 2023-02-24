@@ -1,5 +1,37 @@
 <ion-content>
   <ion-grid>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col text-center >
+          <ion-button (click)="checkGPSPermission()">
+            Check Location GPS 
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="locationCoords">
+        <ion-col size="4" style="color: lightblue;" >Longitude</ion-col>
+        <ion-col> {{locationCoords.longitude}}</ion-col>
+      </ion-row>
+      <ion-row *ngIf="locationCoords">
+        <ion-col size="4" style="color: lightblue;">Latitude</ion-col>
+        <ion-col>{{locationCoords.latitude}}</ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="4" style="color: lightblue;">Accuracy</ion-col>
+        <ion-col>{{locationCoords.accuracy}}</ion-col>
+      </ion-row> -->
+      <ion-row *ngIf="locationCoords">
+        <ion-col size="4" style="color: lightblue;">Timestamp</ion-col>
+        <ion-col>{{locationCoords.timestamp | date:'medium'}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-row *ngIf="userLocation">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label>Latitude: {{userLocation.coords.latitude }} - Longitude: {{userLocation.coords.longitude }}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
   <ion-row>
     <ion-col size="12">
       <ion-item>
@@ -17,7 +49,6 @@
         <h4 class="tablet-view">ASSESSMENT FORM ARCHITECTURAL WORK ({{taskName}}) </h4>
       </ion-col>
     </ion-row>
-
     <ion-row class="tab-header">
       <ion-col size="2">
         <div class="box-border">
