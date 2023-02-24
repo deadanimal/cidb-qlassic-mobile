@@ -15,7 +15,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Camera } from '@ionic-native/camera/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx/';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx/';
 import { Downloader } from '@ionic-native/downloader/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -41,6 +42,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
     Camera,
     Base64ToGallery,
     AndroidPermissions,
+    LocationAccuracy,
     AndroidFullScreen,
     Downloader,
     File,

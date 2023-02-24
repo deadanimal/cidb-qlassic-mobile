@@ -5,7 +5,12 @@ import { CameraPage } from 'src/app/modal/camera/camera.page';
 import { ResultsService } from 'src/app/services/results.service'
 import { AlertService } from '../../services/alert.service';
 import { UserDetailService } from 'src/app/services/user-detail.service';
-// import { AndroidPermissions } from '@awesome-cordova-plugins/android-permissions/ngx';
+import { LocationService } from 'src/app/services/location.service';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx/';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+// import { LocationAccuracy } from '@awesome-cordova-plugins/location-accuracy/ngx';
+
 @Component({
   selector: 'app-task-third-design',
   templateUrl: './task-third-design.page.html',
@@ -14,6 +19,7 @@ import { UserDetailService } from 'src/app/services/user-detail.service';
 export class TaskThirdDesignPage implements OnInit {
   listenUpdates = true;
   userLocation: any;
+  permission: any;
   projectId: string;
   taskId: string;
   taskName: string;
@@ -50,33 +56,101 @@ export class TaskThirdDesignPage implements OnInit {
 
   addPhotoButton: string;
 
+  locationCoords: any;
+  timetest: any;
+
   constructor(
     private storage: NativeStorage,
     private result: ResultsService,
     private alertService: AlertService,
     private modalCtrl: ModalController,
     private user: UserDetailService,
+    private locationService: LocationService,
+    private androidPermissions: AndroidPermissions,
+    private locationAccuracy: LocationAccuracy,
+    // private locationAccuracy: LocationAccuracy
+    private geolocation: Geolocation,
+    
+    
     // private androidPermissions: AndroidPermissions
     ) {
+      this.locationCoords = {
+        latitude: "",
+        longitude: "",
+        accuracy: "",
+        timestamp: ""
+      }
+      this.timetest = Date.now();
+      setInterval(() => this.checkGPSPermission(), 2000);
     }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.chooseSample = 1;
     this.getData(1);
-
     
-
-    // this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.GEOLOCATION).then(
-    //   result => console.warn('Has Geolocation permission?',result.hasPermission),
-    //   err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.GEOLOCATION)
-    // );
-
-    this.userLocation = this.user.getUserLocation();
-
-
-
-  }
+    // this.locationCoords = await this.user.checkGPSPermission()
+    // this.userLocation = await this.user.getUserLocation(); 
+  } 
   
+  checkGPSPermission() {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) {
+
+          //If having permission show 'Turn On GPS' dialogue
+          this.askToTurnOnGPS();
+        } else {
+
+          //If not having permission ask for permission
+          this.requestGPSPermission();
+        }
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+  requestGPSPermission() {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+      if (canRequest) {
+        console.log("4");
+      } else {
+        //Show 'GPS Permission Request' dialogue
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(
+            () => {
+              // call method to turn on GPS
+              this.askToTurnOnGPS();
+            },
+            error => {
+              //Show alert if user click on 'No Thanks'
+              alert('requestPermission Error requesting location permissions ' + error)
+            }
+          );
+      }
+    });
+  }
+  askToTurnOnGPS() {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        // When GPS Turned ON call method to get Accurate location coordinates
+        this.getLocationCoordinates()
+      },
+      error => alert('Error requesting location permissions ' + JSON.stringify(error))
+    );
+  }
+
+  getLocationCoordinates() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.locationCoords.latitude = resp.coords.latitude;
+      this.locationCoords.longitude = resp.coords.longitude;
+      this.locationCoords.accuracy = resp.coords.accuracy;
+      this.locationCoords.timestamp = resp.timestamp;
+    }).catch((error) => {
+      alert('Error getting location' + error);
+    });
+  }
+
   ionViewWillEnter() {
     this.chooseSample = 1;
     this.initializeData();

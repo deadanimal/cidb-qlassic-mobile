@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
-
+// import { LocationAccuracy } from '@ionic-native/location-accuracy'
 
 @Injectable({
   providedIn: 'root'
@@ -20,4 +20,6 @@ export class UserDetailService {
   
 
   }
+  
+   
 }

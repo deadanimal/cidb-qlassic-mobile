@@ -106,7 +106,7 @@ ion-content{
     }
 
     table{
-        width: 200vh;
+        width: 350vh;
         // table-layout: fixed;
         td{
             border: solid 1px rgb(151, 151, 151);
@@ -140,8 +140,8 @@ ion-content{
             div{
 
                 margin-top: 5px;
-                height: 5vh;
-                width: 5vh;
+                height: 10vh;
+                width: 10vh;
                 border-radius: 5px;
                 text-align: center;
                 border: 3px solid lightgray;
@@ -263,7 +263,7 @@ ion-content{
     .tab-information{
         margin-top: 25px;
         table{
-            width: 100%;
+            width: 270vh;
             table-layout: fixed;
             td{
                 border: solid 1px rgb(151, 151, 151);
@@ -286,7 +286,7 @@ ion-content{
         .table-subtopic{
             .vertical-writing{
                 width: 100%;
-                transform: rotate(180deg);
+                // transform: rotate(180deg);
                 writing-mode: vertical-rl;
                 padding-top: 10px;
                 padding-bottom: 10px;
@@ -299,8 +299,8 @@ ion-content{
                 div{
 
                     margin-top: 5px;
-                    height: 96%;
-                    width: 96%;
+                    height: 7vh;
+                    width: 7vh;
                     border-radius: 5px;
                     text-align: center;
                     border: 3px solid lightgray;

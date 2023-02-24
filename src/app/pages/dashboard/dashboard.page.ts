@@ -10,6 +10,8 @@ import { UserDetailService } from 'src/app/services/user-detail.service';
 import { Project,Assessor, ApiService } from 'src/app/services/api.service';
 import { SyncService } from 'src/app/services/sync.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx/';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx/';
 
 @Component({
   selector: 'app-dashboard',
@@ -53,6 +55,8 @@ export class DashboardPage implements OnInit {
     private alert:AlertService,
     private alertController:AlertController,
     private projectDetail: ProjectDetailService,
+    private locationAccuracy: LocationAccuracy,
+    private androidPermissions: AndroidPermissions,
     
 
   ) { }
@@ -62,7 +66,9 @@ export class DashboardPage implements OnInit {
     this.onChangeProject('');
     this.toDisabled = true;    
     this.checkTask();
+
     this.userLocation = await this.user.getUserLocation();
+   
     
     setInterval(() => {    
       this.api.isServerConnected()
